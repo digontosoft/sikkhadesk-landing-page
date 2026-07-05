@@ -19,3 +19,32 @@ To use the components in your app, import them as follows:
 ```tsx
 import { Button } from "@/components/ui/button";
 ```
+
+```
+sikkhadesk-landing-page
+├─ .prettierignore
+├─ .prettierrc
+├─ AGENTS.md
+├─ app
+│  ├─ favicon.ico
+│  ├─ globals.css
+│  ├─ layout.tsx
+│  └─ page.tsx
+├─ components
+│  ├─ theme-provider.tsx
+│  └─ ui
+│     └─ button.tsx
+├─ components.json
+├─ eslint.config.mjs
+├─ hooks
+├─ lib
+│  └─ utils.ts
+├─ next.config.ts
+├─ package-lock.json
+├─ package.json
+├─ postcss.config.mjs
+├─ public
+├─ README.md
+└─ tsconfig.json
+
+```
