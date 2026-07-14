@@ -56,13 +56,6 @@ function MobileMenu() {
             </nav>
 
             <div className="mt-auto flex flex-col gap-2">
-              <Button
-                variant="outline"
-                size="lg"
-                render={<Link href="/contact" onClick={() => setOpen(false)} />}
-              >
-                লগইন
-              </Button>
               <CtaButton
                 href="/contact"
                 onClick={() => setOpen(false)}

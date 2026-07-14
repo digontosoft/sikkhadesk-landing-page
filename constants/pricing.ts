@@ -1,76 +1,126 @@
 import { Building2, Crown, GraduationCap, TrendingUp } from "lucide-react"
 
-import type { PricingPlan, StudentRange } from "@/types/pricing"
+import type { PricingMethodItem, PricingPlan, StudentRange } from "@/types/pricing"
 
-export const studentRanges: StudentRange[] = [
-  { label: "১ - ১৫০ জন শিক্ষার্থী", price: 500 },
-  { label: "১৫০ - ৩০০ জন শিক্ষার্থী", price: 800 },
+const basicStudentRanges: StudentRange[] = [
+  { label: "০ - ১৫০ জন", price: 500 },
+  { label: "১৫১ - ৩০০ জন", price: 800 },
+  { label: "৩০১ - ৫০০ জন", price: 1000 },
+  { label: "৫০১ - ৮০০ জন", price: 1200 },
+  { label: "৮০১ - ১০০০ জন", price: 1500 },
+  { label: "১০০১ - ১৫০০ জন", price: 2000 },
   {
-    label: "৩০০ জনের উপরে",
-    price: 1400,
-    suffix: "+",
-    note: "প্রতি অতিরিক্ত শিক্ষার্থী ২ BDT/মাসিক",
+    label: "১৫০১+ জন",
+    price: 0,
+    contactOnly: true,
+    note: "আলোচনা সাপেক্ষে",
+  },
+]
+
+const standardStudentRanges: StudentRange[] = [
+  { label: "০ - ১৫০ জন", price: 800 },
+  { label: "১৫১ - ৩০০ জন", price: 1000 },
+  { label: "৩০১ - ৫০০ জন", price: 1200 },
+  { label: "৫০১ - ৮০০ জন", price: 1500 },
+  { label: "৮০১ - ১০০০ জন", price: 1800 },
+  { label: "১০০১ - ১৫০০ জন", price: 2500 },
+  {
+    label: "১৫০১+ জন",
+    price: 0,
+    contactOnly: true,
+    note: "আলোচনা সাপেক্ষে",
+  },
+]
+
+const premiumStudentRanges: StudentRange[] = [
+  { label: "০ - ১৫০ জন", price: 1000 },
+  { label: "১৫১ - ৩০০ জন", price: 1200 },
+  { label: "৩০১ - ৫০০ জন", price: 1500 },
+  { label: "৫০১ - ৮০০ জন", price: 1800 },
+  { label: "৮০১ - ১০০০ জন", price: 2000 },
+  { label: "১০০১ - ১৫০০ জন", price: 2500 },
+  {
+    label: "১৫০১+ জন",
+    price: 0,
+    contactOnly: true,
+    note: "আলোচনা সাপেক্ষে",
   },
 ]
 
 export const pricingPlans: PricingPlan[] = [
   {
+    id: "basic",
     icon: GraduationCap,
-    name: "Basic Plan",
+    name: "বেসিক প্ল্যান",
     color: "blue",
-    oneTimePayment: "2000 BDT",
-    studentRanges,
+    oneTimePayment: "২০০০",
+    oneTimeFee: 2000,
+    studentRanges: basicStudentRanges,
     defaultRangeIndex: 0,
     featuresTitle: "ফিচারসমূহ",
-    features: ["সফটওয়্যার প্যানেল অ্যাক্সেস", "মোবাইল অ্যাপ (Android/iOS)", "২৪/৭ সাপোর্ট", "ইমেইল সাপোর্ট"],
+    features: [
+      "সফটওয়্যার প্যানেল অ্যাক্সেস",
+      "মোবাইল অ্যাপ (Android/iOS)",
+      "রবি-বৃহঃ সাপোর্ট",
+      "হোয়াটসঅ্যাপ সাপোর্ট",
+      "সকল ফিচার অ্যাক্সেস",
+    ],
     cta: "এই প্ল্যান নির্বাচন করুন",
-    href: "/contact",
+    href: "/checkout",
   },
   {
+    id: "standard",
     icon: TrendingUp,
-    name: "Standard Plan",
+    name: "স্ট্যান্ডার্ড প্ল্যান",
     color: "blue",
     badge: { label: "জনপ্রিয়", tone: "blue" },
-    oneTimePayment: "3000 BDT",
-    studentRanges,
-    defaultRangeIndex: 1,
+    oneTimePayment: "৩০০০",
+    oneTimeFee: 3000,
+    studentRanges: standardStudentRanges,
+    defaultRangeIndex: 0,
     featuresTitle: "ফিচারসমূহ",
     features: [
       "সফটওয়্যার প্যানেল অ্যাক্সেস",
       "মোবাইল অ্যাপ (Android/iOS)",
       "ওয়েবসাইট",
       "২৪/৭ সাপোর্ট",
-      "SMS ও নোটিফিকেশন সিস্টেম",
+      "গুগল মিট ওয়ান টু ওয়ান সাপোর্ট",
+      "সকল ফিচার অ্যাক্সেস",
     ],
     cta: "এই প্ল্যান নির্বাচন করুন",
-    href: "/contact",
+    href: "/checkout",
     highlight: true,
   },
   {
+    id: "premium",
     icon: Crown,
-    name: "Premium Plan",
+    name: "প্রিমিয়াম প্ল্যান",
     color: "amber",
     badge: { label: "সেরা মূল্য", tone: "green" },
-    oneTimePayment: "5000 BDT",
-    studentRanges,
-    defaultRangeIndex: 2,
+    oneTimePayment: "৫০০০",
+    oneTimeFee: 5000,
+    studentRanges: premiumStudentRanges,
+    defaultRangeIndex: 0,
     featuresTitle: "ফিচারসমূহ",
     features: [
       "সফটওয়্যার প্যানেল অ্যাক্সেস",
       "মোবাইল অ্যাপ (Android/iOS)",
       "ওয়েবসাইট",
       "২৪/৭ প্রায়োরিটি সাপোর্ট",
-      "অ্যাডভান্সড রিপোর্ট ও অ্যানালিটিক্স",
+      "গুগল মিট ওয়ান টু ওয়ান সাপোর্ট",
       "মাল্টি-ব্রাঞ্চ ব্যবস্থাপনা",
+      "সকল ফিচার অ্যাক্সেস",
     ],
     cta: "এই প্ল্যান নির্বাচন করুন",
-    href: "/contact",
+    href: "/checkout",
   },
   {
+    id: "custom",
     icon: Building2,
-    name: "Custom Plan",
+    name: "কাস্টম প্ল্যান",
     color: "indigo",
     oneTimePayment: "N/A",
+    oneTimeFee: 0,
     studentRanges: [],
     defaultRangeIndex: 0,
     featuresTitle: "কাস্টম সুবিধাসমূহ",
@@ -89,20 +139,33 @@ export const pricingPlans: PricingPlan[] = [
   },
 ]
 
-export const pricingMethod = [
-  {
-    range: "১ - ১৫০ জন শিক্ষার্থী",
-    highlight: "শুধুমাত্র 500 BDT/মাস",
-    description: "ছোট প্রতিষ্ঠানের জন্য পারফেক্ট",
-  },
-  {
-    range: "১৫০ - ৩০০ জন শিক্ষার্থী",
-    highlight: "শুধুমাত্র 800 BDT/মাস",
-    description: "বর্ধিত সুবিধা ও পারফরম্যান্স",
-  },
-  {
-    range: "৩০০+ জন শিক্ষার্থী",
-    highlight: "প্রতি অতিরিক্ত শিক্ষার্থী মাত্র 2 BDT",
-    description: "যত বেশি শিক্ষার্থী, তত কম খরচ",
-  },
+const pricingMethodDescriptions = [
+  "ছোট প্রতিষ্ঠানের জন্য পারফেক্ট",
+  "কিছুটা বড় প্রতিষ্ঠানের জন্য উপযুক্ত",
+  "মাঝারি প্রতিষ্ঠানের জন্য সঠিক পছন্দ",
+  "বর্ধিত সুবিধা ও পারফরম্যান্স",
+  "বড় প্রতিষ্ঠানের জন্য উপযুক্ত",
+  "এন্টারপ্রাইজ স্তরের সুবিধা",
 ]
+
+export const pricingMethod: PricingMethodItem[] = basicStudentRanges.map(
+  (range, index) => {
+    if (range.contactOnly) {
+      return {
+        range: `${range.label} শিক্ষার্থী`,
+        contactOnly: true,
+        description: "বড় প্রতিষ্ঠানের জন্য কাস্টম সমাধান",
+      }
+    }
+
+    return {
+      range: `${range.label} শিক্ষার্থী`,
+      prices: [
+        { plan: "বেসিক", price: basicStudentRanges[index].price },
+        { plan: "স্ট্যান্ডার্ড", price: standardStudentRanges[index].price },
+        { plan: "প্রিমিয়াম", price: premiumStudentRanges[index].price },
+      ],
+      description: pricingMethodDescriptions[index] ?? "",
+    }
+  }
+)

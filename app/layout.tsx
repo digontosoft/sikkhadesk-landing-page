@@ -23,7 +23,7 @@ export default function RootLayout({
       suppressHydrationWarning
       className={cn("antialiased", "font-sans", fontSans.variable)}
     >
-      <body>
+      <body suppressHydrationWarning>
         <ThemeProvider>
           <SmoothScrollProvider>
             <Navbar />

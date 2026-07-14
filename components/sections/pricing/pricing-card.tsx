@@ -1,12 +1,14 @@
 "use client"
 
-import * as React from "react"
 import { motion } from "framer-motion"
 import { Check, Gem, Users } from "lucide-react"
+import * as React from "react"
+import { FaBangladeshiTakaSign } from "react-icons/fa6"
 
-import { cn } from "@/lib/utils"
 import { CtaButton } from "@/components/common/cta-button"
 import type { BillingPeriod } from "@/components/sections/pricing/billing-toggle"
+import { buildCheckoutHref } from "@/lib/checkout"
+import { cn } from "@/lib/utils"
 import type { PricingPlan } from "@/types/pricing"
 
 const iconStyles: Record<PricingPlan["color"], string> = {
@@ -35,16 +37,23 @@ interface PricingCardProps {
 }
 
 function PricingCard({ plan, billingPeriod, index }: PricingCardProps) {
-  const [selectedRange, setSelectedRange] = React.useState(plan.defaultRangeIndex)
+  const [selectedRange, setSelectedRange] = React.useState(
+    plan.defaultRangeIndex
+  )
   const Icon = plan.icon
   const activeRange = plan.studentRanges[selectedRange]
   const isYearly = billingPeriod === "yearly"
-  const displayPrice = activeRange
-    ? isYearly
-      ? Math.round(activeRange.price * 12 * 0.9)
-      : activeRange.price
-    : null
-  const priceUnitLabel = isYearly ? "/ বছর" : "/ মাসিক"
+
+  function getRangePrice(price: number) {
+    return isYearly ? Math.round(price * 12 * 0.9) : price
+  }
+
+  const displayPrice = activeRange?.contactOnly
+    ? null
+    : activeRange
+      ? getRangePrice(activeRange.price)
+      : null
+  const priceUnitLabel = isYearly ? "/ বছর" : null
 
   const isGreenAccent = plan.badge?.tone === "green"
 
@@ -57,7 +66,9 @@ function PricingCard({ plan, billingPeriod, index }: PricingCardProps) {
       whileHover={{ y: -6 }}
       className={cn(
         "relative flex flex-col gap-5 rounded-2xl border bg-card p-6 shadow-sm transition-shadow hover:shadow-lg",
-        plan.highlight ? "border-primary shadow-lg shadow-primary/10" : "border-border"
+        plan.highlight
+          ? "border-primary shadow-lg shadow-primary/10"
+          : "border-border"
       )}
     >
       {plan.badge ? (
@@ -80,38 +91,66 @@ function PricingCard({ plan, billingPeriod, index }: PricingCardProps) {
         >
           <Icon className="size-5" />
         </span>
-        <h3 className={cn("text-lg font-bold", nameStyles[plan.color])}>{plan.name}</h3>
+        <h3 className={cn("text-lg font-bold", nameStyles[plan.color])}>
+          {plan.name}
+        </h3>
       </div>
 
       <div>
         {plan.isCustom ? (
           <>
             <span className="text-4xl font-bold text-foreground">Custom</span>
-            <p className="mt-1 text-sm text-muted-foreground">প্রয়োজন অনুযায়ী সমাধান</p>
+            <p className="mt-1 text-sm text-muted-foreground">
+              প্রয়োজন অনুযায়ী সমাধান
+            </p>
+          </>
+        ) : activeRange?.contactOnly ? (
+          <>
+            <span className="text-3xl font-bold text-foreground">
+              আলোচনা সাপেক্ষে
+            </span>
+            <p className="mt-1 text-sm text-muted-foreground">
+              কাস্টম মূল্য নির্ধারণ
+            </p>
           </>
         ) : (
           <>
             <div className="flex items-baseline gap-1">
+              <FaBangladeshiTakaSign className="size-7 shrink-0 text-foreground" />
               <span className="text-4xl font-bold text-foreground">
                 {displayPrice}
                 {activeRange?.suffix}
               </span>
-              <span className="text-sm text-muted-foreground">BDT</span>
             </div>
-            <p className="mt-1 text-sm text-muted-foreground">{priceUnitLabel}</p>
+            {priceUnitLabel ? (
+              <p className="mt-1 text-sm text-muted-foreground">
+                {priceUnitLabel}
+                {isYearly ? " (১০% ছাড়)" : null}
+              </p>
+            ) : null}
           </>
         )}
       </div>
 
-      <div className="bg-primary/5 flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium text-foreground">
-        <Gem className="text-primary size-4 shrink-0" />
-        One Time Payment: {plan.oneTimePayment}
+      <div className="flex items-center gap-2 rounded-xl bg-primary/5 px-4 py-2.5 text-sm font-medium text-foreground">
+        <Gem className="size-4 shrink-0 text-primary" />
+        <span className="inline-flex items-center gap-1 font-semibold">
+          এককালিন প্যামেন্ট:
+          {plan.oneTimePayment === "N/A" ? (
+            plan.oneTimePayment
+          ) : (
+            <>
+              <FaBangladeshiTakaSign className="size-3 shrink-0" />
+              {plan.oneTimePayment}
+            </>
+          )}
+        </span>
       </div>
 
       {!plan.isCustom ? (
         <div>
           <p className="mb-3 flex items-center gap-2 text-sm font-semibold text-foreground">
-            <Users className="text-primary size-4" />
+            <Users className="size-4 text-primary" />
             স্টুডেন্ট রেঞ্জ
           </p>
           <div className="flex flex-col gap-2">
@@ -144,11 +183,24 @@ function PricingCard({ plan, billingPeriod, index }: PricingCardProps) {
                   >
                     {selected ? <Check className="size-3" /> : null}
                   </span>
-                  <div>
-                    <p className="text-sm font-medium text-foreground">{range.label}</p>
-                    <p className="text-xs text-muted-foreground">
-                      {range.note ?? `${range.price} BDT / মাসিক`}
+                  <div className="flex flex-1 items-center justify-between gap-3">
+                    <p className="text-sm font-medium text-foreground">
+                      {range.label}
                     </p>
+                    {range.contactOnly ? (
+                      <p className="shrink-0 text-xs text-muted-foreground">
+                        {range.note ?? "আলোচনা সাপেক্ষে"}
+                      </p>
+                    ) : range.note ? (
+                      <p className="shrink-0 text-xs text-muted-foreground">
+                        {range.note}
+                      </p>
+                    ) : (
+                      <span className="inline-flex shrink-0 items-center gap-0.5 text-sm font-medium text-muted-foreground">
+                        <FaBangladeshiTakaSign className="size-3" />
+                        {getRangePrice(range.price)}
+                      </span>
+                    )}
                   </div>
                 </button>
               )
@@ -158,19 +210,28 @@ function PricingCard({ plan, billingPeriod, index }: PricingCardProps) {
       ) : null}
 
       <div>
-        <p className="mb-3 text-sm font-semibold text-foreground">{plan.featuresTitle}</p>
+        <p className="mb-3 text-sm font-semibold text-foreground">
+          {plan.featuresTitle}
+        </p>
         <ul className="flex flex-col gap-2.5">
           {plan.features.map((feature) => (
-            <li key={feature} className="flex items-start gap-2 text-sm text-muted-foreground">
-              <Check className="text-primary mt-0.5 size-4 shrink-0" />
+            <li
+              key={feature}
+              className="flex items-start gap-2 text-sm text-muted-foreground"
+            >
+              <Check className="mt-0.5 size-4 shrink-0 text-primary" />
               {feature}
             </li>
           ))}
         </ul>
       </div>
 
-      <div className="mt-auto">
-        <CtaButton href={plan.href} size="lg" fullWidth className="justify-center">
+      <div className="mt-auto flex justify-center">
+        <CtaButton
+          href={buildCheckoutHref(plan, selectedRange, billingPeriod)}
+          size="lg"
+          className="justify-center"
+        >
           {plan.cta}
         </CtaButton>
       </div>

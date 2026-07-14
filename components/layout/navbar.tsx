@@ -17,14 +17,14 @@ function Navbar() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-card">
-      <Container className="flex h-20 items-center justify-between">
+      <Container className="flex h-24 items-center justify-between">
         <Logo />
 
         <nav className="hidden items-center gap-8 lg:flex">
           {mainNav.map((item) => {
             const isActive = !item.external && pathname === item.href
             const linkClassName = cn(
-              "relative pb-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground",
+              "relative pb-1.5 text-base font-medium text-muted-foreground transition-colors hover:text-foreground",
               isActive &&
                 "text-primary after:absolute after:inset-x-0 after:-bottom-0.5 after:h-0.5 after:rounded-full after:bg-primary"
             )
@@ -53,12 +53,6 @@ function Navbar() {
 
         <div className="hidden items-center gap-4 lg:flex">
           <ThemeToggle />
-          <Link
-            href="/contact"
-            className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-          >
-            লগইন
-          </Link>
           <CtaButton href="/contact" size="lg" className="rounded-xl">
             ফ্রি ডেমো নিন
             <ArrowRight className="size-5" data-icon="inline-end" />

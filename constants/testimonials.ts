@@ -113,10 +113,10 @@ export const testimonials: Testimonial[] = [
     rating: 4,
   },
   {
-    name: "রুবিনা খাতুন",
-    role: "প্রশাসনিক কর্মকর্তা",
-    institution: "শিক্ষালয় মহিলা মাদ্রাসা",
-    avatar: "রখ",
+    name: "ইমরান মামুন",
+    role: "সভাপতি, পরিচালনা পর্ষদ",
+    institution: "তালতলী আইডিয়াল স্কুল",
+    avatar: "ইম",
     color: "blue",
     content:
       "হিসাব-নিকাশ ও ব্যালান্স শীট তৈরি করা আগে অনেক জটিল ছিল। SikkhaDesk এখন কয়েক মিনিটেই পুরো হিসাব বের করে দেয়।",
