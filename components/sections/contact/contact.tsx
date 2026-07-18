@@ -5,24 +5,18 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 import {
   ArrowRight,
-  Clock,
   Headphones,
   Mail,
   MapPin,
   MessageSquareText,
   Phone,
-  PenLine,
-  Send,
-  ShieldCheck,
-  Sparkles,
-  User,
 } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { siteConfig } from "@/constants/site"
 import { Badge } from "@/components/common/badge"
 import { Heading } from "@/components/common/heading"
-import { CtaButton } from "@/components/common/cta-button"
+import { ContactForm } from "@/components/sections/contact/contact-form"
 import { Button } from "@/components/ui/button"
 import {
   FacebookIcon,
@@ -74,20 +68,6 @@ const socialLinks = [
   { label: "WhatsApp", href: siteConfig.links.whatsapp, icon: WhatsappIcon, bg: "bg-[#25D366]" },
 ]
 
-const trustPoints = [
-  { icon: Clock, color: "text-brand-emerald", title: "দ্রুত উত্তর", description: "২৪ ঘন্টার মধ্যে উত্তর" },
-  { icon: ShieldCheck, color: "text-brand-blue", title: "নিরাপদ ও গোপনীয়", description: "আপনার তথ্য নিরাপদ" },
-  { icon: Sparkles, color: "text-primary", title: "সহায়তায় আমরা সদা প্রস্তুত", description: "আপনার সাফল্য আমাদের লক্ষ্য" },
-]
-
-const subjects = [
-  "সাধারণ জিজ্ঞাসা",
-  "ডেমো অনুরোধ",
-  "প্রযুক্তিগত সহায়তা",
-  "মূল্য সম্পর্কিত",
-  "অন্যান্য",
-]
-
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
   show: { opacity: 1, y: 0 },
@@ -111,13 +91,6 @@ const scaleIn = {
 }
 
 function Contact() {
-  const [submitted, setSubmitted] = React.useState(false)
-
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-    setSubmitted(true)
-  }
-
   return (
     <div className="relative overflow-hidden">
       <div
@@ -169,8 +142,8 @@ function Contact() {
           </span>
         </Heading>
         <p className="max-w-2xl text-balance text-muted-foreground sm:text-lg">
-          SikkhaDesk সম্পর্কে যেকোনো তথ্য, পরামর্শ অথবা সহায়তার জন্য আমাদের সাথে যোগাযোগ করুন।
-          আমরা দ্রুত আপনার সাথে থাকব।
+          SikkhaDesk সম্পর্কে যেকোনো তথ্য, পরামর্শ অথবা সহায়তার জন্য আমাদের সাথে
+          যোগাযোগ করুন। আমরা দ্রুত আপনার সাথে থাকব।
         </p>
       </motion.div>
 
@@ -202,11 +175,15 @@ function Contact() {
                       <Icon className="size-5" />
                     </span>
                     <div className="min-w-0">
-                      <p className="text-sm font-semibold text-foreground">{item.label}</p>
+                      <p className="text-sm font-semibold text-foreground">
+                        {item.label}
+                      </p>
                       <p className="text-sm font-medium wrap-break-word text-foreground">
                         {item.value}
                       </p>
-                      <p className="text-xs text-muted-foreground">{item.caption}</p>
+                      <p className="text-xs text-muted-foreground">
+                        {item.caption}
+                      </p>
                     </div>
                   </div>
                 )
@@ -214,7 +191,10 @@ function Contact() {
                 return (
                   <motion.div key={item.label} variants={fadeLeft}>
                     {item.href ? (
-                      <a href={item.href} className="block transition-opacity hover:opacity-80">
+                      <a
+                        href={item.href}
+                        className="block transition-opacity hover:opacity-80"
+                      >
                         {content}
                       </a>
                     ) : (
@@ -274,19 +254,29 @@ function Contact() {
                 aria-hidden
                 className="bg-primary/20 absolute inset-0 rounded-full"
                 animate={{ scale: [1, 1.35, 1], opacity: [0.6, 0.15, 0.6] }}
-                transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+                transition={{
+                  duration: 2.2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
               />
               <span className="bg-primary relative flex size-11 items-center justify-center rounded-full text-white">
                 <Headphones className="size-5" />
               </span>
             </span>
             <div className="min-w-0 flex-1">
-              <p className="text-sm font-semibold text-foreground">জরুরি সহায়তা প্রয়োজন?</p>
+              <p className="text-sm font-semibold text-foreground">
+                জরুরি সহায়তা প্রয়োজন?
+              </p>
               <p className="text-xs text-muted-foreground">
                 আমাদের সাপোর্ট টিম লাইভ চ্যাটে আপনার জন্য প্রস্তুত।
               </p>
             </div>
-            <Button size="sm" render={<Link href="/contact" />} className="shrink-0">
+            <Button
+              size="sm"
+              render={<Link href="/contact" />}
+              className="shrink-0"
+            >
               লাইভ চ্যাট
             </Button>
           </motion.div>
@@ -300,127 +290,7 @@ function Contact() {
           transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
           className="p-6 sm:p-8"
         >
-          <p className="text-base font-semibold text-foreground">আমাকে মেসেজ পাঠান</p>
-
-          <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-5">
-            <div className="grid gap-5 sm:grid-cols-2">
-              <div className="flex flex-col gap-2">
-                <label htmlFor="name" className="text-sm font-medium text-foreground">
-                  আপনার নাম <span className="text-destructive">*</span>
-                </label>
-                <div className="relative">
-                  <User className="text-muted-foreground absolute top-1/2 left-3 size-4 -translate-y-1/2" />
-                  <input
-                    id="name"
-                    name="name"
-                    required
-                    placeholder="আপনার পূর্ণ নাম লিখুন"
-                    className="h-11 w-full rounded-xl border border-input bg-background pr-3 pl-10 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
-                  />
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-2">
-                <label htmlFor="email" className="text-sm font-medium text-foreground">
-                  ইমেইল ঠিকানা <span className="text-destructive">*</span>
-                </label>
-                <div className="relative">
-                  <Mail className="text-muted-foreground absolute top-1/2 left-3 size-4 -translate-y-1/2" />
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    required
-                    placeholder="আপনার ইমেইল লিখুন"
-                    className="h-11 w-full rounded-xl border border-input bg-background pr-3 pl-10 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="grid gap-5 sm:grid-cols-2">
-              <div className="flex flex-col gap-2">
-                <label htmlFor="phone" className="text-sm font-medium text-foreground">
-                  ফোন নম্বর
-                </label>
-                <div className="relative">
-                  <Phone className="text-muted-foreground absolute top-1/2 left-3 size-4 -translate-y-1/2" />
-                  <input
-                    id="phone"
-                    name="phone"
-                    placeholder="আপনার ফোন নম্বর লিখুন"
-                    className="h-11 w-full rounded-xl border border-input bg-background pr-3 pl-10 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
-                  />
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-2">
-                <label htmlFor="subject" className="text-sm font-medium text-foreground">
-                  বিষয় <span className="text-destructive">*</span>
-                </label>
-                <select
-                  id="subject"
-                  name="subject"
-                  required
-                  defaultValue=""
-                  className="h-11 w-full rounded-xl border border-input bg-background px-3 text-sm text-foreground outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
-                >
-                  <option value="" disabled>
-                    বিষয় নির্বাচন করুন
-                  </option>
-                  {subjects.map((subject) => (
-                    <option key={subject} value={subject}>
-                      {subject}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-2">
-              <label htmlFor="message" className="text-sm font-medium text-foreground">
-                বার্তা <span className="text-destructive">*</span>
-              </label>
-              <div className="relative">
-                <PenLine className="text-muted-foreground absolute top-3.5 left-3 size-4" />
-                <textarea
-                  id="message"
-                  name="message"
-                  required
-                  rows={5}
-                  placeholder="আপনার বার্তা লিখুন..."
-                  className="w-full rounded-xl border border-input bg-background py-3 pr-3 pl-10 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
-                />
-              </div>
-            </div>
-
-            <div className="grid gap-3 rounded-xl bg-muted/40 p-4 sm:grid-cols-3">
-              {trustPoints.map((point) => {
-                const Icon = point.icon
-
-                return (
-                  <div key={point.title} className="flex items-start gap-2">
-                    <Icon className={cn("mt-0.5 size-4 shrink-0", point.color)} />
-                    <div>
-                      <p className="text-xs font-semibold text-foreground">{point.title}</p>
-                      <p className="text-xs text-muted-foreground">{point.description}</p>
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-
-            <CtaButton type="submit" size="lg" fullWidth className="justify-center">
-              <Send className="size-4" />
-              মেসেজ পাঠান
-            </CtaButton>
-
-            {submitted ? (
-              <p className="text-primary text-center text-sm">
-                ধন্যবাদ! আমরা শীঘ্রই আপনার সাথে যোগাযোগ করব।
-              </p>
-            ) : null}
-          </form>
+          <ContactForm />
         </motion.div>
       </div>
 

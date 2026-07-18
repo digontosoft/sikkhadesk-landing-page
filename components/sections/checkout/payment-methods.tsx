@@ -26,13 +26,25 @@ function PaymentMethods({ value, onChange }: PaymentMethodsProps) {
     }
   }
 
+  function selectMethod(method: PaymentFormData["method"]) {
+    onChange(method)
+  }
+
   return (
     <div className="flex flex-col gap-3">
-      <button
-        type="button"
-        onClick={() => onChange("bkash")}
+      <div
+        role="radio"
+        aria-checked={value === "bkash"}
+        tabIndex={0}
+        onClick={() => selectMethod("bkash")}
+        onKeyDown={(event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault()
+            selectMethod("bkash")
+          }
+        }}
         className={cn(
-          "rounded-2xl border p-4 text-left transition-colors",
+          "cursor-pointer rounded-2xl border p-4 text-left transition-colors",
           value === "bkash"
             ? "border-[#E2136E] bg-[#E2136E]/5"
             : "border-border hover:border-[#E2136E]/40"
@@ -89,13 +101,21 @@ function PaymentMethods({ value, onChange }: PaymentMethodsProps) {
         <p className="mt-2 rounded-lg bg-[#E2136E]/10 px-3 py-2 text-xs text-[#E2136E]">
           {paymentAccounts.bkash.instruction}
         </p>
-      </button>
+      </div>
 
-      <button
-        type="button"
-        onClick={() => onChange("bank")}
+      <div
+        role="radio"
+        aria-checked={value === "bank"}
+        tabIndex={0}
+        onClick={() => selectMethod("bank")}
+        onKeyDown={(event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault()
+            selectMethod("bank")
+          }
+        }}
         className={cn(
-          "rounded-2xl border p-4 text-left transition-colors",
+          "cursor-pointer rounded-2xl border p-4 text-left transition-colors",
           value === "bank"
             ? "border-primary bg-primary/5"
             : "border-border hover:border-primary/40"
@@ -171,7 +191,7 @@ function PaymentMethods({ value, onChange }: PaymentMethodsProps) {
         <p className="bg-primary/10 text-primary mt-2 rounded-lg px-3 py-2 text-xs">
           {paymentAccounts.bank.instruction}
         </p>
-      </button>
+      </div>
     </div>
   )
 }

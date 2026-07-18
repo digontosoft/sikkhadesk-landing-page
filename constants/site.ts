@@ -13,7 +13,7 @@ export const siteConfig = {
     facebook: "https://www.facebook.com/profile.php?id=61585574235245",
     linkedin: "https://linkedin.com/company/sikkhadesk",
     youtube: "https://youtube.com/@sikkhadesk",
-    whatsapp: "https://wa.me/8801767123456",
+    whatsapp: "https://wa.me/8801724743002",
     messenger: "https://m.me/sikkhadesk",
   },
 }

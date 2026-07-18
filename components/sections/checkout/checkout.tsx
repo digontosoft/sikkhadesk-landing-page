@@ -17,6 +17,10 @@ import {
   emptyPaymentForm,
 } from "@/constants/checkout"
 import { calculateOrderBreakdown, getPlanById } from "@/lib/checkout"
+import {
+  buildCheckoutWhatsAppMessage,
+  openCheckoutWhatsApp,
+} from "@/lib/checkout-whatsapp"
 import type {
   CheckoutStep,
   InstitutionFormData,
@@ -96,13 +100,45 @@ function Checkout() {
   }
 
   function handlePaymentSubmit(data: PaymentFormData) {
+    if (!plan) return
+
     setPayment(data)
+
+    const message = buildCheckoutWhatsAppMessage({
+      institution,
+      payment: data,
+      plan,
+      rangeLabel: activeRange?.label ?? "",
+      billing,
+      breakdown,
+    })
+
+    openCheckoutWhatsApp(message)
     setSubmitted(true)
     window.scrollTo({ top: 0, behavior: "smooth" })
   }
 
+  function reopenWhatsApp() {
+    if (!plan) return
+
+    const message = buildCheckoutWhatsAppMessage({
+      institution,
+      payment,
+      plan,
+      rangeLabel: activeRange?.label ?? "",
+      billing,
+      breakdown,
+    })
+    openCheckoutWhatsApp(message)
+  }
+
   if (submitted) {
-    return <CheckoutSuccess onHome={() => router.push("/")} />
+    return (
+      <CheckoutSuccess
+        onHome={() => router.push("/")}
+        onOpenWhatsApp={reopenWhatsApp}
+      />
+    )
   }
 
   return (

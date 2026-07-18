@@ -7,9 +7,10 @@ import { Button } from "@/components/ui/button"
 
 interface CheckoutSuccessProps {
   onHome: () => void
+  onOpenWhatsApp?: () => void
 }
 
-function CheckoutSuccess({ onHome }: CheckoutSuccessProps) {
+function CheckoutSuccess({ onHome, onOpenWhatsApp }: CheckoutSuccessProps) {
   const [animationData, setAnimationData] = React.useState<object | null>(null)
 
   React.useEffect(() => {
@@ -45,14 +46,22 @@ function CheckoutSuccess({ onHome }: CheckoutSuccessProps) {
       </div>
 
       <h1 className="text-2xl font-bold text-foreground">
-        পেমেন্ট যাচাইকরণে পাঠানো হয়েছে
+        WhatsApp এ তথ্য পাঠানোর জন্য প্রস্তুত
       </h1>
       <p className="text-muted-foreground">
-        আমরা আপনার পেমেন্ট যাচাই করে শীঘ্রই ইমেইল/ফোনে জানাবো। ধন্যবাদ!
+        Institution Info ও Payment Info আলাদাভাবে WhatsApp এ খুলে গেছে। মেসেজটি
+        পাঠিয়ে দিন, আমরা যাচাই করে শীঘ্রই যোগাযোগ করবো।
       </p>
-      <Button type="button" size="lg" onClick={onHome}>
-        হোমে যান
-      </Button>
+      <div className="flex flex-col gap-3 sm:flex-row">
+        {onOpenWhatsApp ? (
+          <Button type="button" size="lg" onClick={onOpenWhatsApp}>
+            WhatsApp এ আবার খুলুন
+          </Button>
+        ) : null}
+        <Button type="button" size="lg" variant="outline" onClick={onHome}>
+          হোমে যান
+        </Button>
+      </div>
     </div>
   )
 }
