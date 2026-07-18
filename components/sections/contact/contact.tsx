@@ -1,7 +1,5 @@
 "use client"
 
-import * as React from "react"
-import Link from "next/link"
 import { motion } from "framer-motion"
 import {
   ArrowRight,
@@ -11,20 +9,15 @@ import {
   MessageSquareText,
   Phone,
 } from "lucide-react"
+import Link from "next/link"
 
-import { cn } from "@/lib/utils"
-import { siteConfig } from "@/constants/site"
 import { Badge } from "@/components/common/badge"
 import { Heading } from "@/components/common/heading"
+import { FacebookIcon, WhatsappIcon } from "@/components/common/social-icons"
 import { ContactForm } from "@/components/sections/contact/contact-form"
 import { Button } from "@/components/ui/button"
-import {
-  FacebookIcon,
-  LinkedinIcon,
-  MessengerIcon,
-  WhatsappIcon,
-  YoutubeIcon,
-} from "@/components/common/social-icons"
+import { siteConfig } from "@/constants/site"
+import { cn } from "@/lib/utils"
 
 const contactInfo = [
   {
@@ -61,11 +54,28 @@ const contactInfo = [
 ]
 
 const socialLinks = [
-  { label: "Facebook", href: siteConfig.links.facebook, icon: FacebookIcon, bg: "bg-[#1877F2]" },
-  { label: "YouTube", href: siteConfig.links.youtube, icon: YoutubeIcon, bg: "bg-[#FF0000]" },
-  { label: "Linkedin", href: siteConfig.links.linkedin, icon: LinkedinIcon, bg: "bg-[#0A66C2]" },
-  { label: "Messenger", href: siteConfig.links.messenger, icon: MessengerIcon, bg: "bg-[#00B2FF]" },
-  { label: "WhatsApp", href: siteConfig.links.whatsapp, icon: WhatsappIcon, bg: "bg-[#25D366]" },
+  {
+    label: "Facebook",
+    href: siteConfig.links.facebook,
+    icon: FacebookIcon,
+    bg: "bg-[#1877F2]",
+  },
+  // { label: "YouTube", href: siteConfig.links.youtube, icon: YoutubeIcon, bg: "bg-[#FF0000]" },
+  // { label: "Linkedin", href: siteConfig.links.linkedin, icon: LinkedinIcon, bg: "bg-[#0A66C2]" },
+  // { label: "Messenger", href: siteConfig.links.messenger, icon: MessengerIcon, bg: "bg-[#00B2FF]" },
+  {
+    label: "WhatsApp",
+    href: siteConfig.links.whatsapp,
+    icon: WhatsappIcon,
+    bg: "bg-[#25D366]",
+  },
+  {
+    label: "Email",
+    href: siteConfig.links.email,
+    icon: Mail,
+    bg: "bg-brand-emerald",
+    email: `mailto:${siteConfig.email}`,
+  },
 ]
 
 const fadeUp = {
@@ -98,7 +108,7 @@ function Contact() {
         className="pointer-events-none absolute -top-4 right-6 -z-10 hidden grid-cols-6 gap-1.5 opacity-40 sm:grid"
       >
         {Array.from({ length: 18 }).map((_, index) => (
-          <span key={index} className="bg-brand-400 size-1.5 rounded-full" />
+          <span key={index} className="size-1.5 rounded-full bg-brand-400" />
         ))}
       </div>
       <div
@@ -106,7 +116,7 @@ function Contact() {
         className="pointer-events-none absolute bottom-24 left-6 -z-10 hidden grid-cols-6 gap-1.5 opacity-40 sm:grid"
       >
         {Array.from({ length: 18 }).map((_, index) => (
-          <span key={index} className="bg-brand-400 size-1.5 rounded-full" />
+          <span key={index} className="size-1.5 rounded-full bg-brand-400" />
         ))}
       </div>
 
@@ -119,7 +129,7 @@ function Contact() {
         className="flex flex-col items-center gap-4 text-center"
       >
         <Badge>
-          <MessageSquareText className="fill-brand-700/20 text-brand-700 size-3.5" />
+          <MessageSquareText className="size-3.5 fill-brand-700/20 text-brand-700" />
           যোগাযোগ করুন
         </Badge>
         <Heading size="lg" className="max-w-2xl text-balance">
@@ -129,7 +139,7 @@ function Contact() {
             <svg
               aria-hidden
               viewBox="0 0 200 12"
-              className="text-brand-emerald absolute -bottom-2 left-0 w-full"
+              className="absolute -bottom-2 left-0 w-full text-brand-emerald"
             >
               <path
                 d="M2 8c30-8 60-8 98-4s70 4 98-4"
@@ -142,8 +152,8 @@ function Contact() {
           </span>
         </Heading>
         <p className="max-w-2xl text-balance text-muted-foreground sm:text-lg">
-          SikkhaDesk সম্পর্কে যেকোনো তথ্য, পরামর্শ অথবা সহায়তার জন্য আমাদের সাথে
-          যোগাযোগ করুন। আমরা দ্রুত আপনার সাথে থাকব।
+          SikkhaDesk সম্পর্কে যেকোনো তথ্য, পরামর্শ অথবা সহায়তার জন্য আমাদের
+          সাথে যোগাযোগ করুন। আমরা দ্রুত আপনার সাথে থাকব।
         </p>
       </motion.div>
 
@@ -222,6 +232,7 @@ function Contact() {
                   <motion.a
                     key={social.label}
                     href={social.href}
+                    target="_blank"
                     aria-label={social.label}
                     variants={scaleIn}
                     whileHover={{ scale: 1.1, y: -3 }}
@@ -252,7 +263,7 @@ function Contact() {
             <span className="relative flex size-11 shrink-0 items-center justify-center">
               <motion.span
                 aria-hidden
-                className="bg-primary/20 absolute inset-0 rounded-full"
+                className="absolute inset-0 rounded-full bg-primary/20"
                 animate={{ scale: [1, 1.35, 1], opacity: [0.6, 0.15, 0.6] }}
                 transition={{
                   duration: 2.2,
@@ -260,7 +271,7 @@ function Contact() {
                   ease: "easeInOut",
                 }}
               />
-              <span className="bg-primary relative flex size-11 items-center justify-center rounded-full text-white">
+              <span className="relative flex size-11 items-center justify-center rounded-full bg-primary text-white">
                 <Headphones className="size-5" />
               </span>
             </span>
@@ -305,7 +316,7 @@ function Contact() {
         <span>সাধারণ কিছু প্রশ্নের উত্তর পেতে আমাদের</span>
         <Link
           href="/pricing#faq"
-          className="group text-primary inline-flex items-center gap-1 font-medium hover:underline"
+          className="group inline-flex items-center gap-1 font-medium text-primary hover:underline"
         >
           FAQ পেজ দেখুন
           <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />

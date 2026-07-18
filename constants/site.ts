@@ -15,6 +15,7 @@ export const siteConfig = {
     youtube: "https://youtube.com/@sikkhadesk",
     whatsapp: "https://wa.me/8801724743002",
     messenger: "https://m.me/sikkhadesk",
+    email: "help@sikkhadesk.com",
   },
 }
 

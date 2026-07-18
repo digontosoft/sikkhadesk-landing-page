@@ -17,16 +17,16 @@ function OrganizationSummary({ data }: OrganizationSummaryProps) {
   ]
 
   return (
-    <div className="rounded-2xl border border-border bg-card p-5 shadow-sm">
+    <div className="rounded-2xl border border-border bg-card p-4 shadow-sm sm:p-5">
       <h3 className="mb-4 font-bold text-foreground">প্রতিষ্ঠানের তথ্য</h3>
       <dl className="flex flex-col gap-2.5 text-sm">
         {rows.map((row) => (
           <div
             key={row.label}
-            className="flex items-start justify-between gap-3"
+            className="flex flex-col gap-0.5 sm:flex-row sm:items-start sm:justify-between sm:gap-3"
           >
             <dt className="shrink-0 text-muted-foreground">{row.label}</dt>
-            <dd className="text-right font-medium text-foreground">
+            <dd className="min-w-0 break-words font-medium text-foreground sm:text-right">
               {row.value || "—"}
             </dd>
           </div>

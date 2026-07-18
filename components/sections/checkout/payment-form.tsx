@@ -58,7 +58,7 @@ function PaymentForm({
   return (
     <form
       id={formId}
-      className="rounded-2xl border border-border bg-card p-5 shadow-sm sm:p-6"
+      className="rounded-2xl border border-border bg-card p-4 shadow-sm sm:p-6"
       onSubmit={form.handleSubmit((data) => {
         const payload: PaymentFormData = {
           method: data.method,
@@ -78,8 +78,10 @@ function PaymentForm({
         <span className="bg-primary/10 text-primary flex size-10 shrink-0 items-center justify-center rounded-xl">
           <CreditCard className="size-5" />
         </span>
-        <div>
-          <h2 className="text-xl font-bold text-foreground">পেমেন্ট করুন</h2>
+        <div className="min-w-0">
+          <h2 className="text-lg font-bold text-foreground sm:text-xl">
+            পেমেন্ট করুন
+          </h2>
           <p className="text-sm text-muted-foreground">
             নিচের যেকোনো মাধ্যমে পেমেন্ট করে ট্রানজ্যাকশন তথ্য জমা দিন
           </p>
@@ -196,12 +198,21 @@ function PaymentForm({
         </div>
 
         <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-between">
-          <Button type="button" variant="outline" size="lg" onClick={onBack}>
+          <Button
+            type="button"
+            variant="outline"
+            size="lg"
+            className="w-full sm:w-auto"
+            onClick={onBack}
+          >
             পূর্ববর্তী ধাপ
           </Button>
-          <Button type="submit" size="lg" className="gap-2">
-            <Send className="size-4" />
-            পেমেন্ট যাচাইকরণের জন্য পাঠান
+          <Button type="submit" size="lg" className="w-full gap-2 sm:w-auto">
+            <Send className="size-4 shrink-0" />
+            <span className="sm:hidden">যাচাইকরণে পাঠান</span>
+            <span className="hidden sm:inline">
+              পেমেন্ট যাচাইকরণের জন্য পাঠান
+            </span>
           </Button>
         </div>
       </FieldGroup>

@@ -20,7 +20,6 @@ import {
   FacebookIcon,
   // LinkedinIcon,
   WhatsappIcon,
-  YoutubeIcon,
 } from "@/components/common/social-icons"
 import { NewsletterForm } from "@/components/layout/newsletter-form"
 import { footerLegalLinks, footerNav } from "@/constants/navigation"
@@ -31,7 +30,7 @@ const trustBadges = ["নিরাপদ", "সহজ", "দ্রুত", "স�
 const socialLinks = [
   { label: "Facebook", href: siteConfig.links.facebook, icon: FacebookIcon },
   { label: "WhatsApp", href: siteConfig.links.whatsapp, icon: WhatsappIcon },
-  { label: "YouTube", href: siteConfig.links.youtube, icon: YoutubeIcon },
+  // { label: "YouTube", href: siteConfig.links.youtube, icon: YoutubeIcon },
   // { label: "LinkedIn", href: siteConfig.links.linkedin, icon: LinkedinIcon },
   { label: "Email", href: `mailto:${siteConfig.email}`, icon: Mail },
 ]

@@ -39,10 +39,16 @@ function CheckoutEmptyState({
   actionLabel: string
 }) {
   return (
-    <div className="mx-auto flex min-h-[60vh] w-full max-w-lg flex-col items-center justify-center gap-4 px-4 py-16 text-center">
-      <h1 className="text-2xl font-bold text-foreground">{title}</h1>
-      <p className="text-muted-foreground">{description}</p>
-      <Button render={<Link href={href} />}>{actionLabel}</Button>
+    <div className="mx-auto flex min-h-[60vh] w-full max-w-lg flex-col items-center justify-center gap-4 px-4 py-10 text-center sm:py-16">
+      <h1 className="text-balance text-xl font-bold text-foreground sm:text-2xl">
+        {title}
+      </h1>
+      <p className="text-sm text-balance text-muted-foreground sm:text-base">
+        {description}
+      </p>
+      <Button render={<Link href={href} />} className="w-full sm:w-auto">
+        {actionLabel}
+      </Button>
     </div>
   )
 }
@@ -142,11 +148,17 @@ function Checkout() {
   }
 
   return (
-    <div className="bg-background pt-4 sm:pt-6">
+    <div
+      className={
+        step === "institution"
+          ? "bg-background pt-3 pb-28 sm:pt-6 sm:pb-8"
+          : "bg-background pt-3 pb-8 sm:pt-6"
+      }
+    >
       <CheckoutStepper step={step} />
 
-      <div className="mx-auto grid w-full max-w-7xl gap-6 px-4 pb-8 sm:px-6 lg:grid-cols-3">
-        <div className="lg:col-span-2">
+      <div className="mx-auto grid w-full max-w-7xl gap-5 px-3 sm:gap-6 sm:px-6 lg:grid-cols-3">
+        <div className="order-1 min-w-0 lg:col-span-2">
           {step === "institution" ? (
             <InstitutionForm
               formId="institution-form"
@@ -165,13 +177,15 @@ function Checkout() {
           )}
         </div>
 
-        <CheckoutSidebar
-          plan={plan}
-          rangeLabel={activeRange?.label ?? ""}
-          breakdown={breakdown}
-          institution={institution}
-          showOrganization={step === "payment"}
-        />
+        <div className="order-2 min-w-0">
+          <CheckoutSidebar
+            plan={plan}
+            rangeLabel={activeRange?.label ?? ""}
+            breakdown={breakdown}
+            institution={institution}
+            showOrganization={step === "payment"}
+          />
+        </div>
       </div>
 
       {step === "institution" ? (

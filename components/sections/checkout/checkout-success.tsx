@@ -31,8 +31,8 @@ function CheckoutSuccess({ onHome, onOpenWhatsApp }: CheckoutSuccessProps) {
   }, [])
 
   return (
-    <div className="mx-auto flex min-h-[60vh] w-full max-w-lg flex-col items-center justify-center gap-4 px-4 py-16 text-center">
-      <div className="flex size-56 items-center justify-center sm:size-64">
+    <div className="mx-auto flex min-h-[70vh] w-full max-w-lg flex-col items-center justify-center gap-4 px-4 py-10 text-center sm:py-16">
+      <div className="flex size-40 items-center justify-center sm:size-56 md:size-64">
         {animationData ? (
           <Lottie
             animationData={animationData}
@@ -41,24 +41,35 @@ function CheckoutSuccess({ onHome, onOpenWhatsApp }: CheckoutSuccessProps) {
             className="size-full"
           />
         ) : (
-          <div className="bg-muted size-24 animate-pulse rounded-full" />
+          <div className="bg-muted size-20 animate-pulse rounded-full sm:size-24" />
         )}
       </div>
 
-      <h1 className="text-2xl font-bold text-foreground">
+      <h1 className="text-balance text-xl font-bold text-foreground sm:text-2xl">
         WhatsApp এ তথ্য পাঠানোর জন্য প্রস্তুত
       </h1>
-      <p className="text-muted-foreground">
+      <p className="text-sm text-balance text-muted-foreground sm:text-base">
         Institution Info ও Payment Info আলাদাভাবে WhatsApp এ খুলে গেছে। মেসেজটি
         পাঠিয়ে দিন, আমরা যাচাই করে শীঘ্রই যোগাযোগ করবো।
       </p>
-      <div className="flex flex-col gap-3 sm:flex-row">
+      <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
         {onOpenWhatsApp ? (
-          <Button type="button" size="lg" onClick={onOpenWhatsApp}>
+          <Button
+            type="button"
+            size="lg"
+            className="w-full sm:w-auto"
+            onClick={onOpenWhatsApp}
+          >
             WhatsApp এ আবার খুলুন
           </Button>
         ) : null}
-        <Button type="button" size="lg" variant="outline" onClick={onHome}>
+        <Button
+          type="button"
+          size="lg"
+          variant="outline"
+          className="w-full sm:w-auto"
+          onClick={onHome}
+        >
           হোমে যান
         </Button>
       </div>

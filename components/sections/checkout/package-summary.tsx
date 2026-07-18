@@ -15,13 +15,13 @@ function PackageSummary({ plan, rangeLabel, breakdown }: PackageSummaryProps) {
   const Icon = plan.icon
 
   return (
-    <div className="rounded-2xl border border-border bg-card p-5 shadow-sm">
-      <div className="mb-4 flex items-start justify-between gap-3">
-        <div className="flex items-center gap-3">
-          <span className="bg-primary/10 text-primary flex size-10 items-center justify-center rounded-xl">
+    <div className="rounded-2xl border border-border bg-card p-4 shadow-sm sm:p-5">
+      <div className="mb-4 flex items-start justify-between gap-2 sm:gap-3">
+        <div className="flex min-w-0 items-center gap-3">
+          <span className="bg-primary/10 text-primary flex size-10 shrink-0 items-center justify-center rounded-xl">
             <Icon className="size-5" />
           </span>
-          <div>
+          <div className="min-w-0">
             <h3 className="font-bold text-foreground">{plan.name}</h3>
             <p className="text-xs text-muted-foreground">{rangeLabel}</p>
           </div>
@@ -29,7 +29,7 @@ function PackageSummary({ plan, rangeLabel, breakdown }: PackageSummaryProps) {
         {plan.badge ? (
           <span
             className={cn(
-              "rounded-lg px-2.5 py-1 text-[11px] font-semibold text-white",
+              "shrink-0 rounded-lg px-2 py-1 text-[10px] font-semibold text-white sm:px-2.5 sm:text-[11px]",
               plan.badge.tone === "green" ? "bg-brand-emerald" : "bg-primary"
             )}
           >

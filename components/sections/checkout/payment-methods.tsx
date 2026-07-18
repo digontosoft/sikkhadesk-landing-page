@@ -145,45 +145,47 @@ function PaymentMethods({ value, onChange }: PaymentMethodsProps) {
           </span>
         </div>
 
-        <dl className="grid gap-1.5 text-sm">
-          <div className="flex justify-between gap-3">
-            <dt className="text-muted-foreground">ব্যাংক</dt>
-            <dd className="font-medium text-foreground">
+        <dl className="grid gap-2 text-sm">
+          <div className="flex flex-col gap-0.5 sm:flex-row sm:justify-between sm:gap-3">
+            <dt className="shrink-0 text-muted-foreground">ব্যাংক</dt>
+            <dd className="min-w-0 break-words font-medium text-foreground sm:text-right">
               {paymentAccounts.bank.bankName}
             </dd>
           </div>
-          <div className="flex justify-between gap-3">
-            <dt className="text-muted-foreground">অ্যাকাউন্ট নাম</dt>
-            <dd className="font-medium text-foreground">
+          <div className="flex flex-col gap-0.5 sm:flex-row sm:justify-between sm:gap-3">
+            <dt className="shrink-0 text-muted-foreground">অ্যাকাউন্ট নাম</dt>
+            <dd className="min-w-0 break-words font-medium text-foreground sm:text-right">
               {paymentAccounts.bank.accountName}
             </dd>
           </div>
-          <div className="flex items-center justify-between gap-3">
-            <dt className="text-muted-foreground">অ্যাকাউন্ট নম্বর</dt>
-            <dd className="flex items-center gap-2 font-medium text-foreground">
-              {paymentAccounts.bank.accountNumber}
+          <div className="flex flex-col gap-0.5 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
+            <dt className="shrink-0 text-muted-foreground">অ্যাকাউন্ট নম্বর</dt>
+            <dd className="flex min-w-0 items-center gap-2 font-medium text-foreground sm:justify-end">
+              <span className="break-all">
+                {paymentAccounts.bank.accountNumber}
+              </span>
               <button
                 type="button"
                 onClick={(event) => {
                   event.stopPropagation()
                   void copyText(paymentAccounts.bank.accountNumber, "bank")
                 }}
-                className="text-muted-foreground hover:text-foreground"
+                className="text-muted-foreground hover:text-foreground shrink-0"
                 aria-label="অ্যাকাউন্ট নম্বর কপি"
               >
                 <Copy className="size-3.5" />
               </button>
             </dd>
           </div>
-          <div className="flex justify-between gap-3">
-            <dt className="text-muted-foreground">শাখা</dt>
-            <dd className="font-medium text-foreground">
+          <div className="flex flex-col gap-0.5 sm:flex-row sm:justify-between sm:gap-3">
+            <dt className="shrink-0 text-muted-foreground">শাখা</dt>
+            <dd className="min-w-0 break-words font-medium text-foreground sm:text-right">
               {paymentAccounts.bank.branch}
             </dd>
           </div>
-          <div className="flex justify-between gap-3">
-            <dt className="text-muted-foreground">রাউটিং নম্বর</dt>
-            <dd className="font-medium text-foreground">
+          <div className="flex flex-col gap-0.5 sm:flex-row sm:justify-between sm:gap-3">
+            <dt className="shrink-0 text-muted-foreground">রাউটিং নম্বর</dt>
+            <dd className="min-w-0 font-medium text-foreground sm:text-right">
               {paymentAccounts.bank.routingNumber}
             </dd>
           </div>

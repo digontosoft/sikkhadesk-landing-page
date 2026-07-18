@@ -127,7 +127,7 @@ function Testimonials() {
           >
             {items.map((testimonial, index) => (
               <TestimonialCard
-                key={testimonial.name}
+                key={`${testimonial.name}-${testimonial.institution}`}
                 testimonial={testimonial}
                 index={index}
               />

@@ -50,7 +50,7 @@ function InstitutionForm({
   return (
     <form
       id={formId}
-      className="rounded-2xl border border-border bg-card p-5 shadow-sm sm:p-6"
+      className="rounded-2xl border border-border bg-card p-4 shadow-sm sm:p-6"
       onSubmit={form.handleSubmit((data) => {
         const payload = data as InstitutionFormData
         onChange(payload)
@@ -61,8 +61,10 @@ function InstitutionForm({
         <span className="bg-primary/10 text-primary flex size-10 shrink-0 items-center justify-center rounded-xl">
           <Building2 className="size-5" />
         </span>
-        <div>
-          <h2 className="text-xl font-bold text-foreground">প্রতিষ্ঠানের তথ্য</h2>
+        <div className="min-w-0">
+          <h2 className="text-lg font-bold text-foreground sm:text-xl">
+            প্রতিষ্ঠানের তথ্য
+          </h2>
           <p className="text-sm text-muted-foreground">
             আপনার প্রতিষ্ঠানের সঠিক তথ্য দিন
           </p>
