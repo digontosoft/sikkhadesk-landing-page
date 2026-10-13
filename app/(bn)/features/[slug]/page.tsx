@@ -69,7 +69,7 @@ export default async function ModulePage({
         <span aria-hidden> / </span>
         <span aria-current="page">{productModule.shortTitle}</span>
       </nav>
-      <h1 className="max-w-4xl text-3xl leading-snug font-bold sm:text-4xl">
+      <h1 className="max-w-4xl text-3xl/snug font-bold sm:text-4xl/snug">
         {productModule.title} <span className="text-primary">SikkhaDesk</span>
       </h1>
       <p className="mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">

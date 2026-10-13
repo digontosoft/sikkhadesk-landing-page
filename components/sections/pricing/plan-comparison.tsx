@@ -12,7 +12,7 @@ const rows = [
 export function PlanComparison() {
   return (
     <Section className="bg-muted/20">
-      <h2 className="text-2xl font-bold sm:text-3xl">
+      <h2 className="text-2xl/snug font-bold sm:text-3xl/snug">
         কোন প্ল্যানে কোন সুবিধা
       </h2>
       <p className="mt-4 max-w-3xl text-muted-foreground">

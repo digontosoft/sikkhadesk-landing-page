@@ -18,6 +18,8 @@ const routes = [
   "/pricing/",
   "/contact/",
   "/about/",
+  "/blog/",
+  "/blog/school-management-software-buying-checklist/",
   "/privacy-policy/",
   "/terms/",
 ]

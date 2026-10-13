@@ -3,14 +3,14 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const headingVariants = cva(
-  "font-heading font-semibold tracking-tight text-foreground",
+  "font-heading font-semibold text-foreground",
   {
     variants: {
       size: {
-        sm: "text-xl sm:text-2xl",
-        md: "text-2xl sm:text-3xl",
-        lg: "text-3xl sm:text-4xl md:text-5xl",
-        xl: "text-4xl sm:text-5xl md:text-6xl",
+        sm: "text-xl/snug sm:text-2xl/snug",
+        md: "text-2xl/snug sm:text-3xl/snug",
+        lg: "text-3xl/snug sm:text-4xl/snug md:text-5xl/snug",
+        xl: "text-4xl/snug sm:text-5xl/snug md:text-6xl/snug",
       },
     },
     defaultVariants: {

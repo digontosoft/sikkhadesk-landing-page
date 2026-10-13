@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next"
 
 import { getPageUrl, homeLanguages } from "@/lib/metadata"
+import { getBlogPosts } from "@/lib/blog"
 import { getProductModules } from "@/lib/landing-content"
 
 export const dynamic = "force-static"
@@ -16,13 +17,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/pricing",
     "/contact",
     "/about",
+    "/blog",
     "/privacy-policy",
     "/terms",
     ...productModules.map(({ slug }) => `/features/${slug}`),
-  ].map((path) => ({
-    url: getPageUrl(path),
-    ...(["/", "/en"].includes(path)
-      ? { alternates: { languages: homeLanguages } }
-      : {}),
-  }))
+  ]
+    .map((path) => ({
+      url: getPageUrl(path),
+      ...(["/", "/en"].includes(path)
+        ? { alternates: { languages: homeLanguages } }
+        : {}),
+    }))
+    .concat(
+      getBlogPosts().map((post) => ({
+        url: getPageUrl(`/blog/${post.slug}`),
+        lastModified: post.updatedAt,
+      }))
+    )
 }

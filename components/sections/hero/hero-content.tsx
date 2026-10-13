@@ -38,7 +38,7 @@ function HeroContent() {
       <motion.h1
         variants={fadeUp}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className="font-heading text-3xl font-bold text-balance text-foreground sm:text-4xl md:text-5xl"
+        className="font-heading text-3xl/snug font-bold text-balance text-foreground sm:text-4xl/snug md:text-5xl/snug"
       >
         বাংলাদেশের স্কুল ম্যানেজমেন্ট সফটওয়্যার{" "}
         <span className="text-gradient-hero">SikkhaDesk</span>

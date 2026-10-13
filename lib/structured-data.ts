@@ -93,3 +93,39 @@ export function breadcrumbStructuredData(
     })),
   }
 }
+
+export function articleStructuredData(post: {
+  slug: string
+  title: string
+  description: string
+  publishedAt: string
+  updatedAt: string
+}) {
+  const url = getPageUrl(`/blog/${post.slug}`)
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "@id": `${url}#article`,
+    mainEntityOfPage: url,
+    headline: post.title,
+    description: post.description,
+    inLanguage: "bn-BD",
+    datePublished: post.publishedAt,
+    dateModified: post.updatedAt,
+    image: `${siteConfig.url}${siteConfig.shareImage}`,
+    author: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: getPageUrl(),
+    },
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: getPageUrl(),
+      logo: {
+        "@type": "ImageObject",
+        url: `${siteConfig.url}/images/logos/logo.png`,
+      },
+    },
+  }
+}

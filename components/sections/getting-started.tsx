@@ -19,7 +19,7 @@ const steps = [
 export function GettingStarted() {
   return (
     <Section className="bg-muted/20">
-      <h2 className="text-center text-2xl font-bold sm:text-3xl">
+      <h2 className="text-center text-2xl/snug font-bold sm:text-3xl/snug">
         SikkhaDesk দিয়ে শুরু করুন
       </h2>
       <ol className="mt-8 grid gap-6 md:grid-cols-3">

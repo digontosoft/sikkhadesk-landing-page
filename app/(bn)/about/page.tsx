@@ -55,7 +55,7 @@ export default async function AboutPage() {
       <p className="mb-3 font-semibold text-primary">
         {siteConfig.operatorName}-এর শিক্ষা ব্যবস্থাপনা সফটওয়্যার
       </p>
-      <h1 className="max-w-4xl text-3xl leading-snug font-bold sm:text-4xl">
+      <h1 className="max-w-4xl text-3xl/snug font-bold sm:text-4xl/snug">
         {content.title}
       </h1>
       <p className="mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">

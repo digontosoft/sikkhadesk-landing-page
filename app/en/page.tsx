@@ -92,7 +92,7 @@ export default function EnglishHomePage() {
             <p className="mb-5 text-sm font-semibold text-primary">
               For education institutions in Bangladesh
             </p>
-            <h1 className="text-4xl leading-tight font-bold text-balance sm:text-5xl">
+            <h1 className="text-4xl/tight font-bold text-balance sm:text-5xl/tight">
               School management software in Bangladesh:{" "}
               <span className="text-gradient-hero">SikkhaDesk</span>
             </h1>

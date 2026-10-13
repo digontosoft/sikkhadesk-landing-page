@@ -9,6 +9,7 @@ interface ConstructMetadataOptions {
   locale?: "bn_BD" | "en_BD"
   noIndex?: boolean
   languages?: Record<string, string>
+  article?: { publishedTime: string; modifiedTime: string }
 }
 
 export function getPageUrl(path = "/") {
@@ -32,6 +33,7 @@ export function constructMetadata({
   locale = "bn_BD",
   noIndex = false,
   languages,
+  article,
 }: ConstructMetadataOptions = {}): Metadata {
   const pageTitle = title ? `${title} | ${siteConfig.name}` : siteConfig.title
   const pageUrl = getPageUrl(path)
@@ -54,7 +56,13 @@ export function constructMetadata({
       url: pageUrl,
       siteName: siteConfig.name,
       locale,
-      type: "website",
+      ...(article
+        ? {
+            type: "article" as const,
+            publishedTime: article.publishedTime,
+            modifiedTime: article.modifiedTime,
+          }
+        : { type: "website" as const }),
       images: [
         {
           url: siteConfig.shareImage,

@@ -54,7 +54,7 @@ export default function PrivacyPolicyPage() {
   return (
     <Section lang="en" className="pt-20 sm:pt-28">
       <div className="mx-auto max-w-3xl">
-        <h1 className="font-heading text-3xl font-semibold text-foreground sm:text-4xl">
+        <h1 className="font-heading text-3xl/snug font-semibold text-foreground sm:text-4xl/snug">
           Privacy Policy
         </h1>
         <p className="mt-3 text-sm text-muted-foreground">

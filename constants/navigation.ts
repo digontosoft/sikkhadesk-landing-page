@@ -15,6 +15,7 @@ export const mainNav: NavItem[] = [
   { label: "হোম", href: "/" },
   { label: "ফিচার", href: "/features" },
   { label: "মূল্য পরিকল্পনা", href: "/pricing" },
+  { label: "ব্লগ", href: "/blog" },
   { label: "ডেমো", href: siteConfig.demoUrl, external: true },
   { label: "যোগাযোগ", href: "/contact" },
   { label: "আমাদের সম্পর্কে", href: "/about" },
@@ -27,6 +28,7 @@ export const footerNav: FooterNavGroup[] = [
     items: [
       { label: "ফিচার", href: "/features" },
       { label: "মূল্য পরিকল্পনা", href: "/pricing" },
+      { label: "ব্লগ", href: "/blog" },
       { label: "ডেমো", href: siteConfig.demoUrl, external: true },
       { label: "যোগাযোগ", href: "/contact" },
       { label: "আমাদের সম্পর্কে", href: "/about" },

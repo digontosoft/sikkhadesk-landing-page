@@ -8,7 +8,7 @@ export async function ModuleLinks() {
   if (productModules.length === 0) return null
   return (
     <Section className="bg-muted/20">
-      <h2 className="text-center text-2xl font-bold sm:text-3xl">
+      <h2 className="text-center text-2xl/snug font-bold sm:text-3xl/snug">
         প্রতিদিনের কাজ কীভাবে পরিচালনা করবেন
       </h2>
       <p className="mx-auto mt-4 max-w-2xl text-center text-muted-foreground">
