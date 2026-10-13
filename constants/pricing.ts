@@ -1,6 +1,10 @@
 import { Building2, Crown, GraduationCap, TrendingUp } from "lucide-react"
 
-import type { PricingMethodItem, PricingPlan, StudentRange } from "@/types/pricing"
+import type {
+  PricingMethodItem,
+  PricingPlan,
+  StudentRange,
+} from "@/types/pricing"
 
 const basicStudentRanges: StudentRange[] = [
   { label: "০ - ১৫০ জন", price: 500 },
@@ -60,10 +64,10 @@ export const pricingPlans: PricingPlan[] = [
     featuresTitle: "ফিচারসমূহ",
     features: [
       "সফটওয়্যার প্যানেল অ্যাক্সেস",
-      "মোবাইল অ্যাপ (Android/iOS)",
-      "রবি-বৃহঃ সাপোর্ট",
+      "Android মোবাইল অ্যাপ",
+      "রবি–বৃহঃ, সকাল ৯টা–সন্ধ্যা ৭টা সাপোর্ট",
       "হোয়াটসঅ্যাপ সাপোর্ট",
-      "সকল ফিচার অ্যাক্সেস",
+      "শিক্ষার্থী, উপস্থিতি, ফি ও পরীক্ষা ব্যবস্থাপনা",
     ],
     cta: "এই প্ল্যান নির্বাচন করুন",
     href: "/checkout",
@@ -81,11 +85,11 @@ export const pricingPlans: PricingPlan[] = [
     featuresTitle: "ফিচারসমূহ",
     features: [
       "সফটওয়্যার প্যানেল অ্যাক্সেস",
-      "মোবাইল অ্যাপ (Android/iOS)",
+      "Android মোবাইল অ্যাপ",
       "ওয়েবসাইট",
-      "২৪/৭ সাপোর্ট",
+      "রবি–বৃহঃ, সকাল ৯টা–সন্ধ্যা ৭টা সাপোর্ট",
       "গুগল মিট ওয়ান টু ওয়ান সাপোর্ট",
-      "সকল ফিচার অ্যাক্সেস",
+      "শিক্ষার্থী, উপস্থিতি, ফি ও পরীক্ষা ব্যবস্থাপনা",
     ],
     cta: "এই প্ল্যান নির্বাচন করুন",
     href: "/checkout",
@@ -104,9 +108,9 @@ export const pricingPlans: PricingPlan[] = [
     featuresTitle: "ফিচারসমূহ",
     features: [
       "সফটওয়্যার প্যানেল অ্যাক্সেস",
-      "মোবাইল অ্যাপ (Android/iOS)",
+      "Android মোবাইল অ্যাপ",
       "ওয়েবসাইট",
-      "২৪/৭ প্রায়োরিটি সাপোর্ট",
+      "রবি–বৃহঃ, সকাল ৯টা–সন্ধ্যা ৭টা সাপোর্ট",
       "গুগল মিট ওয়ান টু ওয়ান সাপোর্ট",
       "মাল্টি-ব্রাঞ্চ ব্যবস্থাপনা",
       "সকল ফিচার অ্যাক্সেস",
@@ -127,8 +131,8 @@ export const pricingPlans: PricingPlan[] = [
     features: [
       "অসীম সংখ্যক শিক্ষার্থী",
       "সমস্ত প্রিমিয়াম ফিচার",
-      "ওয়েবসাইট ও মোবাইল অ্যাপ (Android & iOS)",
-      "২৪/৭ ডেডিকেটেড সাপোর্ট টিম",
+      "ওয়েবসাইট ও Android মোবাইল অ্যাপ",
+      "রবি–বৃহঃ, সকাল ৯টা–সন্ধ্যা ৭টা সাপোর্ট",
       "প্রিমিয়াম স্কুল ওয়েবসাইট",
       "আপনার নিজের সার্ভার ডিপ্লয়",
       "১ কপি হোয়াইট লেবেল লাইসেন্স",

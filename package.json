@@ -6,6 +6,12 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "optimize:images": "node scripts/optimize-images.mjs",
+    "preview": "next start --hostname 127.0.0.1 --port 4173",
+    "content:seed": "node scripts/generate-content-seed.mjs",
+    "content:check": "node scripts/check-supabase-content.mjs",
+    "test:seo": "playwright test",
+    "test:admin": "playwright test --config=playwright.admin.config.ts",
     "start": "next start",
     "lint": "eslint",
     "format": "prettier --write \"**/*.{ts,tsx}\"",
@@ -34,6 +40,7 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@playwright/test": "^1.64.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
@@ -42,6 +49,7 @@
     "eslint-config-next": "16.2.6",
     "prettier": "^3.8.3",
     "prettier-plugin-tailwindcss": "^0.8.0",
+    "sharp": "^0.34.5",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

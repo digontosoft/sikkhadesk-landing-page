@@ -40,7 +40,7 @@ export const institutionSchema = z.object({
 })
 
 export const paymentSchema = z.object({
-  method: z.enum(["bkash", "bank"], {
+  method: z.enum(["bkash"], {
     message: "পেমেন্ট পদ্ধতি নির্বাচন করুন",
   }),
   transactionId: z

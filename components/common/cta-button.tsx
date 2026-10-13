@@ -6,7 +6,10 @@ import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 
-interface CtaButtonProps extends Omit<React.ComponentProps<typeof Button>, "render" | "type"> {
+interface CtaButtonProps extends Omit<
+  React.ComponentProps<typeof Button>,
+  "render" | "type"
+> {
   href?: string
   type?: "button" | "submit"
   onClick?: () => void
@@ -36,12 +39,12 @@ function CtaButton({
         className={cn(
           "relative overflow-hidden border-0 shadow-md",
           tone === "gradient"
-            ? "bg-gradient-primary shadow-brand-700/20 text-white"
+            ? "bg-gradient-primary text-white shadow-brand-700/20"
             : "bg-white text-primary shadow-black/10 hover:bg-white/90",
           className
         )}
         {...(href
-          ? { render: <Link href={href} onClick={onClick} /> }
+          ? { render: <Link href={href} onClick={onClick} role="link" /> }
           : { type, onClick })}
         {...props}
       >

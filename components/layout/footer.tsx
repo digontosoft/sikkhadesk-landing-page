@@ -3,13 +3,13 @@
 import { motion } from "framer-motion"
 import {
   CheckCircle2,
-  GraduationCap,
   Headphones,
   Mail,
   MapPin,
   Phone,
   ShieldCheck,
-  Users,
+  Monitor,
+  Smartphone,
 } from "lucide-react"
 import Link from "next/link"
 import { Fragment } from "react"
@@ -21,7 +21,6 @@ import {
   // LinkedinIcon,
   WhatsappIcon,
 } from "@/components/common/social-icons"
-import { NewsletterForm } from "@/components/layout/newsletter-form"
 import { footerLegalLinks, footerNav } from "@/constants/navigation"
 import { siteConfig } from "@/constants/site"
 
@@ -39,7 +38,7 @@ const contactItems = [
   {
     icon: Phone,
     value: siteConfig.phone,
-    caption: "রবি - বৃহঃ (সকাল ৯টা - সন্ধ্যা ৭টা)",
+    caption: siteConfig.supportHours,
     href: `tel:${siteConfig.phone.replace(/[\s-]/g, "")}`,
   },
   {
@@ -56,17 +55,21 @@ const contactItems = [
   },
   {
     icon: MapPin,
-    value: "মীর বাড়ি রোড # ০৫, সানকিপারা, ময়মনসিংহ",
-    caption: "ময়মনসিংহ - ২২০০, বাংলাদেশ",
+    value: siteConfig.addressBn,
+    caption: siteConfig.addressCaptionBn,
     href: undefined,
   },
 ]
 
 const trustStats = [
-  { icon: GraduationCap, value: "৫০+", label: "সন্তুষ্ট প্রতিষ্ঠান" },
-  { icon: Users, value: "৩,০০০+", label: "ব্যবহারকারী" },
-  { icon: ShieldCheck, value: "১০০%", label: "নিরাপদ ও নির্ভরযোগ্য" },
-  { icon: Headphones, value: "২৪/৭", label: "সাপোর্ট সহায়তা" },
+  { icon: Monitor, value: "ওয়েব", label: "ব্রাউজারে ব্যবহার করুন" },
+  { icon: Smartphone, value: "Android", label: "মোবাইল অ্যাপ" },
+  { icon: ShieldCheck, value: "১৪ দিন", label: "ফ্রি ট্রায়াল" },
+  {
+    icon: Headphones,
+    value: "রবি–বৃহঃ",
+    label: "সকাল ৯টা–সন্ধ্যা ৭টা সাপোর্ট",
+  },
 ]
 
 function Footer() {
@@ -76,7 +79,7 @@ function Footer() {
     <footer className="border-t border-border bg-card">
       <div className="mx-auto max-w-7xl px-6 py-10 sm:px-8 sm:py-12 lg:px-10 lg:py-14">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.5, ease: "easeOut" }}
@@ -89,6 +92,13 @@ function Footer() {
               শিক্ষা প্রতিষ্ঠানকে করে তোলে আরও সংগঠিত, স্বচ্ছ এবং ডিজিটাল।
             </p>
 
+            <Link
+              href="/about"
+              className="text-sm text-primary hover:underline"
+            >
+              {siteConfig.operatorName}-এর একটি সফটওয়্যার →
+            </Link>
+
             <div className="flex flex-wrap gap-2">
               {trustBadges.map((label) => (
                 <Badge key={label}>
@@ -100,12 +110,27 @@ function Footer() {
 
             <div className="mt-2 flex flex-col gap-2">
               <p className="text-sm font-semibold text-foreground">
-                নিউজলেটার সাবস্ক্রাইব করুন
+                নতুন ফিচার ও আপডেট
               </p>
               <p className="text-xs text-muted-foreground">
-                নতুন ফিচার ও আপডেট পেতে আমাদের সাথে থাকুন।
+                SikkhaDesk-এর খবর ও নতুন ফিচার জানতে আমাদের ফেসবুক পেজ দেখুন।
               </p>
-              <NewsletterForm />
+              <a
+                href={siteConfig.links.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm font-medium text-primary hover:underline"
+              >
+                ফেসবুকে আপডেট দেখুন →
+              </a>
+              <a
+                href={siteConfig.androidAppUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm font-medium text-primary hover:underline"
+              >
+                Google Play থেকে Android অ্যাপ ডাউনলোড করুন →
+              </a>
             </div>
           </div>
 
@@ -187,7 +212,7 @@ function Footer() {
         <div className="my-10 border-t border-border" />
 
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.5, ease: "easeOut" }}
@@ -245,7 +270,7 @@ function Footer() {
         <div className="my-10 border-t border-border" />
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "0px 0px 100px 0px" }}
           transition={{ duration: 0.4, ease: "easeOut" }}

@@ -7,7 +7,7 @@ import { FaBangladeshiTakaSign } from "react-icons/fa6"
 
 import { CtaButton } from "@/components/common/cta-button"
 import type { BillingPeriod } from "@/components/sections/pricing/billing-toggle"
-import { buildCheckoutHref } from "@/lib/checkout"
+import { buildCheckoutHref, calculateOrderBreakdown } from "@/lib/checkout"
 import { cn } from "@/lib/utils"
 import type { PricingPlan } from "@/types/pricing"
 
@@ -53,13 +53,19 @@ function PricingCard({ plan, billingPeriod, index }: PricingCardProps) {
     : activeRange
       ? getRangePrice(activeRange.price)
       : null
-  const priceUnitLabel = isYearly ? "/ বছর" : null
+  const priceUnitLabel = isYearly ? "/ বছর" : "/ মাস"
+  const breakdown =
+    !plan.isCustom && !activeRange?.contactOnly
+      ? calculateOrderBreakdown(plan, selectedRange, billingPeriod)
+      : null
+  const formatAmount = (amount: number) =>
+    new Intl.NumberFormat("bn-BD").format(amount)
 
   const isGreenAccent = plan.badge?.tone === "green"
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 24 }}
+      initial={false}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.45, delay: index * 0.08, ease: "easeOut" }}
@@ -118,7 +124,7 @@ function PricingCard({ plan, billingPeriod, index }: PricingCardProps) {
             <div className="flex items-baseline gap-1">
               <FaBangladeshiTakaSign className="size-7 shrink-0 text-foreground" />
               <span className="text-4xl font-bold text-foreground">
-                {displayPrice}
+                {displayPrice === null ? null : formatAmount(displayPrice)}
                 {activeRange?.suffix}
               </span>
             </div>
@@ -141,11 +147,34 @@ function PricingCard({ plan, billingPeriod, index }: PricingCardProps) {
           ) : (
             <>
               <FaBangladeshiTakaSign className="size-3 shrink-0" />
-              {plan.oneTimePayment}
+              {formatAmount(plan.oneTimeFee)}
             </>
           )}
         </span>
       </div>
+
+      {breakdown ? (
+        <div className="rounded-xl border border-border bg-muted/30 p-4 text-sm">
+          <p className="font-semibold text-foreground">
+            শুরুতে মোট: ৳{formatAmount(breakdown.payableTotal)}
+          </p>
+          <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+            {isYearly ? "প্রথম বছরের" : "প্রথম মাসের"} সাবস্ক্রিপশন ৳
+            {formatAmount(breakdown.subscriptionTotal)}
+            {" + "}এককালীন সেটআপ ৳{formatAmount(breakdown.oneTimeFee)}
+            {" + "}ভ্যাট ({Math.round(breakdown.vatRate * 100)}%) ৳
+            {formatAmount(breakdown.vatAmount)}।
+          </p>
+          <p className="mt-1 text-xs text-muted-foreground">
+            পরবর্তী {isYearly ? "বছরে" : "মাসে"} ৳
+            {formatAmount(
+              breakdown.subscriptionTotal +
+                Math.round(breakdown.subscriptionTotal * breakdown.vatRate)
+            )}{" "}
+            (সাবস্ক্রিপশন ও ভ্যাট)।
+          </p>
+        </div>
+      ) : null}
 
       {!plan.isCustom ? (
         <div>
@@ -162,6 +191,7 @@ function PricingCard({ plan, billingPeriod, index }: PricingCardProps) {
                   key={range.label}
                   type="button"
                   onClick={() => setSelectedRange(rangeIndex)}
+                  aria-pressed={selected}
                   className={cn(
                     "flex cursor-pointer items-center gap-3 rounded-xl border px-3.5 py-2.5 text-left transition-colors",
                     selected
@@ -198,7 +228,7 @@ function PricingCard({ plan, billingPeriod, index }: PricingCardProps) {
                     ) : (
                       <span className="inline-flex shrink-0 items-center gap-0.5 text-sm font-medium text-muted-foreground">
                         <FaBangladeshiTakaSign className="size-3" />
-                        {getRangePrice(range.price)}
+                        {formatAmount(getRangePrice(range.price))}
                       </span>
                     )}
                   </div>

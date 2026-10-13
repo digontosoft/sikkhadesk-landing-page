@@ -22,7 +22,7 @@ export interface InstitutionFormData {
 }
 
 export interface PaymentFormData {
-  method: "bkash" | "bank"
+  method: "bkash"
   transactionId: string
   transferredAt: string
   proof: File | null

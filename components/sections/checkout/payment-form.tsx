@@ -7,7 +7,12 @@ import { Controller, useForm } from "react-hook-form"
 import { PaymentMethods } from "@/components/sections/checkout/payment-methods"
 import { ProofUpload } from "@/components/sections/checkout/proof-upload"
 import { Button } from "@/components/ui/button"
-import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field"
+import {
+  Field,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+} from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { paymentSchema, type PaymentSchema } from "@/lib/checkout-schemas"
 import type { PaymentFormData } from "@/types/checkout"
@@ -75,7 +80,7 @@ function PaymentForm({
       })}
     >
       <div className="mb-6 flex items-start gap-3">
-        <span className="bg-primary/10 text-primary flex size-10 shrink-0 items-center justify-center rounded-xl">
+        <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
           <CreditCard className="size-5" />
         </span>
         <div className="min-w-0">
@@ -186,8 +191,8 @@ function PaymentForm({
           )}
         />
 
-        <div className="bg-primary/5 flex items-start gap-2 rounded-xl px-4 py-3 text-sm text-foreground">
-          <Info className="text-primary mt-0.5 size-4 shrink-0" />
+        <div className="flex items-start gap-2 rounded-xl bg-primary/5 px-4 py-3 text-sm text-foreground">
+          <Info className="mt-0.5 size-4 shrink-0 text-primary" />
           <ul className="list-disc space-y-1 pl-4 text-muted-foreground">
             <li>পেমেন্ট যাচাই হতে সাধারণত ১২–২৪ ঘণ্টা সময় লাগে।</li>
             <li>

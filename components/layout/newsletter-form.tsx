@@ -29,7 +29,9 @@ function NewsletterForm() {
         </button>
       </div>
       {submitted ? (
-        <p className="text-primary text-xs">ধন্যবাদ! আপনি সফলভাবে সাবস্ক্রাইব করেছেন।</p>
+        <p className="text-xs text-primary">
+          ধন্যবাদ! আপনি সফলভাবে সাবস্ক্রাইব করেছেন।
+        </p>
       ) : null}
     </form>
   )

@@ -15,16 +15,22 @@ function MobileMenu() {
 
   return (
     <Drawer.Root open={open} onOpenChange={setOpen} swipeDirection="right">
-      <Drawer.Trigger render={<Button variant="ghost" size="icon" aria-label="Open menu" />}>
+      <Drawer.Trigger
+        render={<Button variant="ghost" size="icon" aria-label="Open menu" />}
+      >
         <Menu className="size-5" />
       </Drawer.Trigger>
       <Drawer.Portal>
         <Drawer.Backdrop className="fixed inset-0 z-50 bg-black/40 transition-opacity duration-300 data-ending-style:opacity-0 data-starting-style:opacity-0" />
         <Drawer.Viewport className="fixed inset-0 z-50 flex justify-end">
-          <Drawer.Popup className="flex h-full w-full max-w-xs flex-col gap-8 border-l border-border bg-card p-6 shadow-xl outline-none transition-transform duration-300 data-ending-style:translate-x-full data-starting-style:translate-x-full">
+          <Drawer.Popup className="flex h-full w-full max-w-xs flex-col gap-8 border-l border-border bg-card p-6 shadow-xl transition-transform duration-300 outline-none data-ending-style:translate-x-full data-starting-style:translate-x-full">
             <div className="flex items-center justify-between">
               <Logo />
-              <Drawer.Close render={<Button variant="ghost" size="icon" aria-label="Close menu" />}>
+              <Drawer.Close
+                render={
+                  <Button variant="ghost" size="icon" aria-label="Close menu" />
+                }
+              >
                 <X className="size-5" />
               </Drawer.Close>
             </div>

@@ -11,7 +11,9 @@ interface PriceTextProps {
 function PriceText({ amount, className, iconClassName }: PriceTextProps) {
   return (
     <span className={cn("inline-flex items-center gap-0.5", className)}>
-      <FaBangladeshiTakaSign className={cn("size-3.5 shrink-0", iconClassName)} />
+      <FaBangladeshiTakaSign
+        className={cn("size-3.5 shrink-0", iconClassName)}
+      />
       {formatBn(amount)}
     </span>
   )

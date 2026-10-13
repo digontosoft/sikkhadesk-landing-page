@@ -17,7 +17,12 @@ import { Controller, useForm } from "react-hook-form"
 
 import { CtaButton } from "@/components/common/cta-button"
 import { ContactSuccessModal } from "@/components/sections/contact/contact-success-modal"
-import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field"
+import {
+  Field,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+} from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import {
   Select,
@@ -34,6 +39,7 @@ import {
   type ContactFormValues,
 } from "@/lib/contact-schema"
 import { sendContactEmail } from "@/lib/emailjs"
+import { trackEvent } from "@/lib/analytics"
 import { cn } from "@/lib/utils"
 
 const trustPoints = [
@@ -75,6 +81,7 @@ function ContactForm() {
 
     try {
       await sendContactEmail(values)
+      trackEvent("generate_lead", { lead_source: "contact_form" })
       form.reset(contactFormDefaults)
       setSuccessOpen(true)
     } catch (error) {
@@ -88,7 +95,9 @@ function ContactForm() {
 
   return (
     <>
-      <p className="text-base font-semibold text-foreground">আমাকে মেসেজ পাঠান</p>
+      <p className="text-base font-semibold text-foreground">
+        আমাকে মেসেজ পাঠান
+      </p>
 
       <form
         onSubmit={form.handleSubmit(onSubmit)}
@@ -265,7 +274,7 @@ function ContactForm() {
         </CtaButton>
 
         {submitError ? (
-          <p className="text-destructive text-center text-sm">{submitError}</p>
+          <p className="text-center text-sm text-destructive">{submitError}</p>
         ) : null}
       </form>
 

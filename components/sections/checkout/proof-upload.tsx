@@ -4,7 +4,12 @@ import { CloudUpload, FileText, X } from "lucide-react"
 import * as React from "react"
 
 import { Button } from "@/components/ui/button"
-import { Field, FieldDescription, FieldError, FieldLabel } from "@/components/ui/field"
+import {
+  Field,
+  FieldDescription,
+  FieldError,
+  FieldLabel,
+} from "@/components/ui/field"
 
 interface ProofUploadProps {
   fileName: string | null
@@ -40,7 +45,7 @@ function ProofUpload({ fileName, error, onChange }: ProofUploadProps) {
       </FieldLabel>
       {fileName ? (
         <div className="flex items-center gap-3 rounded-xl border border-border bg-muted/30 p-4">
-          <FileText className="text-primary size-5 shrink-0" />
+          <FileText className="size-5 shrink-0 text-primary" />
           <p className="flex-1 truncate text-sm font-medium text-foreground">
             {fileName}
           </p>
@@ -63,13 +68,15 @@ function ProofUpload({ fileName, error, onChange }: ProofUploadProps) {
           onClick={() => inputRef.current?.click()}
           className="flex w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-border bg-muted/20 px-4 py-8 text-center transition-colors hover:border-primary/40 hover:bg-primary/5"
         >
-          <span className="bg-primary/10 text-primary flex size-11 items-center justify-center rounded-full">
+          <span className="flex size-11 items-center justify-center rounded-full bg-primary/10 text-primary">
             <CloudUpload className="size-5" />
           </span>
           <span className="text-sm font-medium text-foreground">
             ফাইল নির্বাচন করুন
           </span>
-          <FieldDescription>JPG, PNG, JPEG, PDF (সর্বোচ্চ 5MB)</FieldDescription>
+          <FieldDescription>
+            JPG, PNG, JPEG, PDF (সর্বোচ্চ 5MB)
+          </FieldDescription>
         </button>
       )}
       <input

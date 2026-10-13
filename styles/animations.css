@@ -52,3 +52,12 @@
 .animate-float {
   animation: float 6s ease-in-out infinite;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-float,
+  .animate-fade-in,
+  .animate-fade-in-up {
+    animation: none;
+  }
+}

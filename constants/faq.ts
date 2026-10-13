@@ -1,13 +1,15 @@
 import { Headphones, Monitor } from "lucide-react"
 
 import type { FaqCategory } from "@/types/faq"
+import { siteConfig } from "@/constants/site"
 
 export const faqCategories: FaqCategory[] = [
   {
     icon: Monitor,
     color: "blue",
     title: "সফটওয়্যার ও ফিচার",
-    description: "SikkhaDesk এর ফিচার, ব্যবহার ও কার্যকারিতা নিয়ে সাধারণ প্রশ্ন",
+    description:
+      "SikkhaDesk এর ফিচার, ব্যবহার ও কার্যকারিতা নিয়ে সাধারণ প্রশ্ন",
     items: [
       {
         question: "SikkhaDesk কী এবং এটি কার জন্য?",
@@ -50,7 +52,7 @@ export const faqCategories: FaqCategory[] = [
       {
         question: "পেমেন্ট পদ্ধতি কী কী?",
         answer:
-          "bKash, Nagad, Rocket এবং ব্যাংক ট্রান্সফারের মাধ্যমে পেমেন্ট করা যায়। প্রতিটি প্ল্যানে ওয়ান-টাইম সেটআপ ফি এবং মাসিক/বার্ষিক সাবস্ক্রিপশন ফি প্রযোজ্য।",
+          "অনলাইন চেকআউটে bKash-এর মাধ্যমে পেমেন্ট করা যায়। অন্য পদ্ধতিতে পেমেন্ট করতে চাইলে আমাদের সাপোর্টে যোগাযোগ করুন। প্রতিটি প্ল্যানে ওয়ান-টাইম সেটআপ ফি এবং মাসিক/বার্ষিক সাবস্ক্রিপশন ফি প্রযোজ্য।",
       },
       {
         question: "সাবস্ক্রিপশন আপগ্রেড বা ডাউনগ্রেড করা যাবে কি?",
@@ -59,8 +61,7 @@ export const faqCategories: FaqCategory[] = [
       },
       {
         question: "কোন ধরনের সাপোর্ট পাবো?",
-        answer:
-          "ফোন, ইমেইল ও লাইভ চ্যাটে বাংলা ও ইংরেজি উভয় ভাষায় সাপোর্ট পাবেন। Premium ও Custom প্ল্যানে ডেডিকেটেড সাপোর্ট ম্যানেজার অন্তর্ভুক্ত।",
+        answer: `ফোন, ইমেইল ও WhatsApp-এ সাপোর্ট পাবেন। আমাদের সাপোর্টের সময় ${siteConfig.supportHours}। আপনার প্রতিষ্ঠানের প্রয়োজন অনুযায়ী সহায়তার বিষয়ে আমাদের সাথে আলোচনা করুন।`,
       },
       {
         question: "ফ্রি ট্রায়াল আছে কি?",

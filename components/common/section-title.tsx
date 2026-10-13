@@ -21,7 +21,9 @@ function SectionTitle({
     <div
       className={cn(
         "flex flex-col gap-4",
-        align === "center" ? "items-center text-center" : "items-start text-left",
+        align === "center"
+          ? "items-center text-center"
+          : "items-start text-left",
         className
       )}
     >

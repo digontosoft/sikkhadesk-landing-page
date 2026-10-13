@@ -42,10 +42,7 @@ function ContactSuccessModal({ open, onOpenChange }: ContactSuccessModalProps) {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent
-        className="sm:max-w-md"
-        showCloseButton
-      >
+      <DialogContent className="sm:max-w-md" showCloseButton>
         <DialogHeader className="items-center text-center">
           <div className="mx-auto flex size-44 items-center justify-center sm:size-52">
             {animationData ? (
@@ -56,14 +53,15 @@ function ContactSuccessModal({ open, onOpenChange }: ContactSuccessModalProps) {
                 className="size-full"
               />
             ) : (
-              <div className="bg-muted size-20 animate-pulse rounded-full" />
+              <div className="size-20 animate-pulse rounded-full bg-muted" />
             )}
           </div>
           <DialogTitle className="text-xl">
             মেসেজ সফলভাবে পাঠানো হয়েছে
           </DialogTitle>
           <DialogDescription className="text-center">
-            ধন্যবাদ! আমরা আপনার বার্তা পেয়েছি এবং শীঘ্রই আপনার সাথে যোগাযোগ করব।
+            ধন্যবাদ! আমরা আপনার বার্তা পেয়েছি এবং শীঘ্রই আপনার সাথে যোগাযোগ
+            করব।
           </DialogDescription>
         </DialogHeader>
         <DialogFooter className="sm:justify-center">

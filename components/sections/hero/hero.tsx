@@ -20,18 +20,40 @@ import { cn } from "@/lib/utils"
 import { Section } from "@/components/layout/section"
 import { HeroContent } from "@/components/sections/hero/hero-content"
 import { HeroImage } from "@/components/sections/hero/hero-image"
+import { siteConfig } from "@/constants/site"
 
 const bgIcons = [
   { icon: Cloud, className: "top-6 -left-6 size-9 -rotate-12 text-brand-blue" },
   { icon: Database, className: "top-44 -left-10 size-8 rotate-6 text-primary" },
-  { icon: ShieldCheck, className: "bottom-28 -left-4 size-9 -rotate-6 text-brand-emerald" },
+  {
+    icon: ShieldCheck,
+    className: "bottom-28 -left-4 size-9 -rotate-6 text-brand-emerald",
+  },
   { icon: Wifi, className: "top-1/2 -left-8 size-7 rotate-3 text-brand-amber" },
-  { icon: GraduationCap, className: "top-4 -right-6 size-10 rotate-12 text-brand-amber" },
-  { icon: BarChart3, className: "top-44 -right-10 size-8 -rotate-6 text-brand-blue" },
-  { icon: BookOpen, className: "bottom-28 -right-4 size-9 rotate-6 text-primary" },
-  { icon: CreditCard, className: "top-1/2 -right-8 size-7 -rotate-3 text-brand-emerald" },
-  { icon: MessageSquare, className: "bottom-6 -right-12 size-8 rotate-12 text-brand-amber" },
-  { icon: Bell, className: "bottom-8 -left-12 size-7 -rotate-12 text-brand-blue" },
+  {
+    icon: GraduationCap,
+    className: "top-4 -right-6 size-10 rotate-12 text-brand-amber",
+  },
+  {
+    icon: BarChart3,
+    className: "top-44 -right-10 size-8 -rotate-6 text-brand-blue",
+  },
+  {
+    icon: BookOpen,
+    className: "bottom-28 -right-4 size-9 rotate-6 text-primary",
+  },
+  {
+    icon: CreditCard,
+    className: "top-1/2 -right-8 size-7 -rotate-3 text-brand-emerald",
+  },
+  {
+    icon: MessageSquare,
+    className: "bottom-6 -right-12 size-8 rotate-12 text-brand-amber",
+  },
+  {
+    icon: Bell,
+    className: "bottom-8 -left-12 size-7 -rotate-12 text-brand-blue",
+  },
 ]
 
 const strip = [
@@ -45,7 +67,7 @@ const strip = [
   {
     icon: ShieldCheck,
     title: "নিরাপদ ও নির্ভরযোগ্য",
-    description: "আপনার ডেটা ১০০% সুরক্ষিত",
+    description: "প্রতিষ্ঠানের তথ্য এক জায়গায়",
     color: "text-brand-emerald",
     bg: "bg-brand-emerald/10",
   },
@@ -58,8 +80,8 @@ const strip = [
   },
   {
     icon: Headphones,
-    title: "২৪/৭ সাপোর্ট",
-    description: "আমরা আছি সবসময় আপনার সাথে",
+    title: "বাংলায় সাপোর্ট",
+    description: siteConfig.supportHours,
     color: "text-primary",
     bg: "bg-primary/10",
   },
@@ -74,7 +96,10 @@ function Hero() {
           className="pointer-events-none absolute inset-0 -z-10 hidden lg:block"
         >
           {bgIcons.map(({ icon: Icon, className }, index) => (
-            <Icon key={index} className={cn("absolute opacity-10", className)} />
+            <Icon
+              key={index}
+              className={cn("absolute opacity-10", className)}
+            />
           ))}
         </div>
 
@@ -91,10 +116,14 @@ function Hero() {
           return (
             <motion.div
               key={item.title}
-              initial={{ opacity: 0, y: 20 }}
+              initial={false}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.45, delay: index * 0.08, ease: "easeOut" }}
+              transition={{
+                duration: 0.45,
+                delay: index * 0.08,
+                ease: "easeOut",
+              }}
               className="flex items-center gap-4 rounded-2xl border border-border bg-card p-6"
             >
               <span
@@ -107,8 +136,12 @@ function Hero() {
                 <Icon className="size-6" />
               </span>
               <div>
-                <p className="text-base font-semibold text-foreground">{item.title}</p>
-                <p className="text-sm text-muted-foreground">{item.description}</p>
+                <p className="text-base font-semibold text-foreground">
+                  {item.title}
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  {item.description}
+                </p>
               </div>
             </motion.div>
           )

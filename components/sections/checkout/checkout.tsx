@@ -12,11 +12,9 @@ import { CheckoutSuccess } from "@/components/sections/checkout/checkout-success
 import { InstitutionForm } from "@/components/sections/checkout/institution-form"
 import { PaymentForm } from "@/components/sections/checkout/payment-form"
 import { Button } from "@/components/ui/button"
-import {
-  emptyInstitutionForm,
-  emptyPaymentForm,
-} from "@/constants/checkout"
+import { emptyInstitutionForm, emptyPaymentForm } from "@/constants/checkout"
 import { calculateOrderBreakdown, getPlanById } from "@/lib/checkout"
+import { trackEvent } from "@/lib/analytics"
 import {
   buildCheckoutWhatsAppMessage,
   openCheckoutWhatsApp,
@@ -40,13 +38,16 @@ function CheckoutEmptyState({
 }) {
   return (
     <div className="mx-auto flex min-h-[60vh] w-full max-w-lg flex-col items-center justify-center gap-4 px-4 py-10 text-center sm:py-16">
-      <h1 className="text-balance text-xl font-bold text-foreground sm:text-2xl">
+      <h1 className="text-xl font-bold text-balance text-foreground sm:text-2xl">
         {title}
       </h1>
       <p className="text-sm text-balance text-muted-foreground sm:text-base">
         {description}
       </p>
-      <Button render={<Link href={href} />} className="w-full sm:w-auto">
+      <Button
+        render={<Link href={href} role="link" />}
+        className="w-full sm:w-auto"
+      >
         {actionLabel}
       </Button>
     </div>
@@ -58,7 +59,8 @@ function Checkout() {
   const searchParams = useSearchParams()
   const planId = searchParams.get("plan")
   const rangeIndex = Number(searchParams.get("range") ?? "0")
-  const billing = (searchParams.get("billing") ?? "monthly") as BillingPeriod
+  const billing: BillingPeriod =
+    searchParams.get("billing") === "yearly" ? "yearly" : "monthly"
 
   const plan = getPlanById(planId)
   const [step, setStep] = React.useState<CheckoutStep>("institution")
@@ -67,6 +69,27 @@ function Checkout() {
   const [payment, setPayment] =
     React.useState<PaymentFormData>(emptyPaymentForm)
   const [submitted, setSubmitted] = React.useState(false)
+  const trackedPlan = React.useRef<string | null>(null)
+
+  React.useEffect(() => {
+    if (!plan || plan.isCustom) return
+    const range = Math.floor(
+      Number.isFinite(rangeIndex)
+        ? Math.min(Math.max(rangeIndex, 0), plan.studentRanges.length - 1)
+        : plan.defaultRangeIndex
+    )
+    if (plan.studentRanges[range]?.contactOnly) return
+    const key = `${plan.id}-${range}-${billing}`
+    if (trackedPlan.current === key) return
+    trackedPlan.current = key
+    const order = calculateOrderBreakdown(plan, range, billing)
+    trackEvent("begin_checkout", {
+      plan_id: plan.id,
+      billing_period: billing,
+      currency: "BDT",
+      value: order.payableTotal,
+    })
+  }, [plan, rangeIndex, billing])
 
   if (!plan || plan.isCustom) {
     return (
@@ -80,9 +103,11 @@ function Checkout() {
   }
 
   const safeRangeIndex = Number.isFinite(rangeIndex)
-    ? Math.min(
-        Math.max(rangeIndex, 0),
-        Math.max(plan.studentRanges.length - 1, 0)
+    ? Math.floor(
+        Math.min(
+          Math.max(rangeIndex, 0),
+          Math.max(plan.studentRanges.length - 1, 0)
+        )
       )
     : plan.defaultRangeIndex
   const activeRange = plan.studentRanges[safeRangeIndex]
@@ -100,6 +125,10 @@ function Checkout() {
   }
 
   function handleInstitutionSubmit(data: InstitutionFormData) {
+    trackEvent("checkout_step", {
+      step: "institution_completed",
+      plan_id: plan?.id ?? "",
+    })
     setInstitution(data)
     setStep("payment")
     window.scrollTo({ top: 0, behavior: "smooth" })
@@ -120,6 +149,10 @@ function Checkout() {
     })
 
     openCheckoutWhatsApp(message)
+    trackEvent("payment_verification_request", {
+      plan_id: plan.id,
+      billing_period: billing,
+    })
     setSubmitted(true)
     window.scrollTo({ top: 0, behavior: "smooth" })
   }

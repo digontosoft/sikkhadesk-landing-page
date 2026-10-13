@@ -10,6 +10,9 @@
 
 # testing
 /coverage
+/test-results
+/test-results-admin
+/playwright-report
 
 # next.js
 /.next/
@@ -30,6 +33,7 @@ pnpm-debug.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
 
 # typescript
 *.tsbuildinfo

@@ -45,7 +45,9 @@ function LogoUpload({ preview, onChange }: LogoUploadProps) {
             className="size-16 rounded-lg bg-white object-contain"
           />
           <div className="flex-1">
-            <p className="text-sm font-medium text-foreground">লোগো নির্বাচিত</p>
+            <p className="text-sm font-medium text-foreground">
+              লোগো নির্বাচিত
+            </p>
             <FieldDescription>PNG, JPG, SVG (সর্বোচ্চ 2MB)</FieldDescription>
           </div>
           <Button
@@ -69,7 +71,7 @@ function LogoUpload({ preview, onChange }: LogoUploadProps) {
             "flex w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-border bg-muted/20 px-4 py-8 text-center transition-colors hover:border-primary/40 hover:bg-primary/5"
           )}
         >
-          <span className="bg-primary/10 text-primary flex size-11 items-center justify-center rounded-full">
+          <span className="flex size-11 items-center justify-center rounded-full bg-primary/10 text-primary">
             <CloudUpload className="size-5" />
           </span>
           <span className="flex items-center gap-1.5 text-sm font-medium text-foreground">

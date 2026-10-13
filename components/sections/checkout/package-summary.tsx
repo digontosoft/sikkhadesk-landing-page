@@ -18,7 +18,7 @@ function PackageSummary({ plan, rangeLabel, breakdown }: PackageSummaryProps) {
     <div className="rounded-2xl border border-border bg-card p-4 shadow-sm sm:p-5">
       <div className="mb-4 flex items-start justify-between gap-2 sm:gap-3">
         <div className="flex min-w-0 items-center gap-3">
-          <span className="bg-primary/10 text-primary flex size-10 shrink-0 items-center justify-center rounded-xl">
+          <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
             <Icon className="size-5" />
           </span>
           <div className="min-w-0">
@@ -62,7 +62,7 @@ function PackageSummary({ plan, rangeLabel, breakdown }: PackageSummaryProps) {
             key={feature}
             className="flex items-start gap-2 text-sm text-muted-foreground"
           >
-            <Check className="text-primary mt-0.5 size-4 shrink-0" />
+            <Check className="mt-0.5 size-4 shrink-0 text-primary" />
             {feature}
           </li>
         ))}

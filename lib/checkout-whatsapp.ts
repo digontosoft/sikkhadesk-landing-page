@@ -43,10 +43,7 @@ export function buildCheckoutWhatsAppMessage({
   billing,
   breakdown,
 }: BuildCheckoutWhatsAppMessageOptions) {
-  const methodLabel =
-    payment.method === "bkash"
-      ? paymentAccounts.bkash.label
-      : paymentAccounts.bank.label
+  const methodLabel = paymentAccounts.bkash.label
 
   const billingLabel = billing === "yearly" ? "বার্ষিক" : "মাসিক"
 

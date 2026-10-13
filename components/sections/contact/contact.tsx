@@ -25,7 +25,7 @@ const contactInfo = [
     color: "bg-brand-blue/10 text-brand-blue",
     label: "ফোন নম্বর",
     value: siteConfig.phone,
-    caption: "সকাল ৯টা - রাত ৮টা (শুক্রবার বন্ধ)",
+    caption: siteConfig.supportHours,
     href: `tel:${siteConfig.phone.replace(/[\s-]/g, "")}`,
   },
   {
@@ -40,8 +40,8 @@ const contactInfo = [
     icon: MapPin,
     color: "bg-primary/10 text-primary",
     label: "অফিস ঠিকানা",
-    value: "বাড়ি: ১২৩, রোড: ৮, সেক্টর: ১০",
-    caption: "উত্তরা, ঢাকা-১২৩০, বাংলাদেশ",
+    value: siteConfig.addressBn,
+    caption: siteConfig.addressCaptionBn,
   },
   {
     icon: Headphones,
@@ -71,7 +71,7 @@ const socialLinks = [
   },
   {
     label: "Email",
-    href: siteConfig.links.email,
+    href: `mailto:${siteConfig.email}`,
     icon: Mail,
     bg: "bg-brand-emerald",
     email: `mailto:${siteConfig.email}`,
@@ -121,7 +121,7 @@ function Contact() {
       </div>
 
       <motion.div
-        initial="hidden"
+        initial={false}
         whileInView="show"
         viewport={{ once: true, margin: "-60px" }}
         variants={fadeUp}
@@ -132,10 +132,10 @@ function Contact() {
           <MessageSquareText className="size-3.5 fill-brand-700/20 text-brand-700" />
           যোগাযোগ করুন
         </Badge>
-        <Heading size="lg" className="max-w-2xl text-balance">
-          আমরা আছি{" "}
+        <Heading as="h1" size="lg" className="max-w-2xl text-balance">
+          SikkhaDesk-এর ডেমো ও{" "}
           <span className="relative inline-block">
-            <span className="text-gradient-hero">আপনার পাশে</span>
+            <span className="text-gradient-hero">সহায়তা নিন</span>
             <svg
               aria-hidden
               viewBox="0 0 200 12"
@@ -159,7 +159,7 @@ function Contact() {
 
       <div className="mt-12 grid overflow-hidden rounded-3xl border border-border bg-card shadow-sm lg:grid-cols-[1fr_1.3fr] lg:divide-x lg:divide-border">
         <motion.div
-          initial="hidden"
+          initial={false}
           whileInView="show"
           viewport={{ once: true, margin: "-60px" }}
           variants={staggerContainer}
@@ -280,21 +280,27 @@ function Contact() {
                 জরুরি সহায়তা প্রয়োজন?
               </p>
               <p className="text-xs text-muted-foreground">
-                আমাদের সাপোর্ট টিম লাইভ চ্যাটে আপনার জন্য প্রস্তুত।
+                {siteConfig.supportHours} আমাদের সাথে যোগাযোগ করুন।
               </p>
             </div>
             <Button
               size="sm"
-              render={<Link href="/contact" />}
+              render={
+                <Link
+                  href={siteConfig.links.whatsapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                />
+              }
               className="shrink-0"
             >
-              লাইভ চ্যাট
+              WhatsApp
             </Button>
           </motion.div>
         </motion.div>
 
         <motion.div
-          initial="hidden"
+          initial={false}
           whileInView="show"
           viewport={{ once: true, margin: "-60px" }}
           variants={fadeUp}
@@ -306,7 +312,7 @@ function Contact() {
       </div>
 
       <motion.div
-        initial="hidden"
+        initial={false}
         whileInView="show"
         viewport={{ once: true, margin: "-60px" }}
         variants={fadeUp}

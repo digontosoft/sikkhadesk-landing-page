@@ -25,8 +25,10 @@ function OrderSummary({ breakdown }: OrderSummaryProps) {
 
         {breakdown.isYearly ? (
           <div className="flex items-start justify-between gap-3">
-            <span className="min-w-0 text-muted-foreground">ডিসকাউন্ট (১০%)</span>
-            <span className="text-brand-emerald inline-flex shrink-0 items-center gap-0.5 font-medium">
+            <span className="min-w-0 text-muted-foreground">
+              ডিসকাউন্ট (১০%)
+            </span>
+            <span className="inline-flex shrink-0 items-center gap-0.5 font-medium text-brand-emerald">
               - <PriceText amount={breakdown.yearlyDiscount} />
             </span>
           </div>
@@ -34,7 +36,9 @@ function OrderSummary({ breakdown }: OrderSummaryProps) {
 
         {breakdown.oneTimeFee > 0 ? (
           <div className="flex items-start justify-between gap-3">
-            <span className="min-w-0 text-muted-foreground">এককালীন পেমেন্ট</span>
+            <span className="min-w-0 text-muted-foreground">
+              এককালীন পেমেন্ট
+            </span>
             <PriceText
               amount={breakdown.oneTimeFee}
               className="shrink-0 font-medium text-foreground"
@@ -52,13 +56,13 @@ function OrderSummary({ breakdown }: OrderSummaryProps) {
           />
         </div>
 
-        <div className="border-border mt-1 flex items-start justify-between gap-3 border-t pt-3">
+        <div className="mt-1 flex items-start justify-between gap-3 border-t border-border pt-3">
           <span className="min-w-0 font-semibold text-foreground">
             মোট পরিশোধযোগ্য
           </span>
           <PriceText
             amount={breakdown.payableTotal}
-            className="text-primary shrink-0 text-base font-bold sm:text-lg"
+            className="shrink-0 text-base font-bold text-primary sm:text-lg"
             iconClassName="size-4 text-primary"
           />
         </div>

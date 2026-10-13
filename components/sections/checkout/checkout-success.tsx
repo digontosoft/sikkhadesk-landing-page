@@ -41,11 +41,11 @@ function CheckoutSuccess({ onHome, onOpenWhatsApp }: CheckoutSuccessProps) {
             className="size-full"
           />
         ) : (
-          <div className="bg-muted size-20 animate-pulse rounded-full sm:size-24" />
+          <div className="size-20 animate-pulse rounded-full bg-muted sm:size-24" />
         )}
       </div>
 
-      <h1 className="text-balance text-xl font-bold text-foreground sm:text-2xl">
+      <h1 className="text-xl font-bold text-balance text-foreground sm:text-2xl">
         WhatsApp এ তথ্য পাঠানোর জন্য প্রস্তুত
       </h1>
       <p className="text-sm text-balance text-muted-foreground sm:text-base">

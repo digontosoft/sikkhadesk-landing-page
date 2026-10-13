@@ -36,7 +36,9 @@ function TestimonialCard({ testimonial, index }: TestimonialCardProps) {
       whileHover={{ y: -6 }}
       className={cn(
         "flex h-full flex-col justify-between gap-6 rounded-2xl border bg-card p-6 shadow-sm transition-shadow hover:shadow-lg",
-        testimonial.featured ? "border-primary shadow-lg shadow-primary/10" : "border-border"
+        testimonial.featured
+          ? "border-primary shadow-lg shadow-primary/10"
+          : "border-border"
       )}
     >
       <div>
@@ -55,7 +57,7 @@ function TestimonialCard({ testimonial, index }: TestimonialCardProps) {
                 key={i}
                 className={
                   i < testimonial.rating
-                    ? "fill-brand-amber text-brand-amber size-3.5"
+                    ? "size-3.5 fill-brand-amber text-brand-amber"
                     : "size-3.5 text-muted"
                 }
               />
@@ -78,7 +80,9 @@ function TestimonialCard({ testimonial, index }: TestimonialCardProps) {
           <p
             className={cn(
               "text-sm font-semibold",
-              testimonial.featured ? textStyles[testimonial.color] : "text-foreground"
+              testimonial.featured
+                ? textStyles[testimonial.color]
+                : "text-foreground"
             )}
           >
             {testimonial.name}

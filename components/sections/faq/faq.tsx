@@ -24,8 +24,8 @@ import { siteConfig } from "@/constants/site"
 
 const supportPoints = [
   { icon: Clock, label: "দ্রুত উত্তর", value: "২৪ ঘন্টার মধ্যে" },
-  { icon: Phone, label: "লাইভ সাপোর্ট", value: "সকাল ৯টা - রাত ৯টা" },
-  { icon: Mail, label: "ইমেইল সাপোর্ট", value: siteConfig.supportCenter },
+  { icon: Phone, label: "সাপোর্টের সময়", value: siteConfig.supportHours },
+  { icon: Mail, label: "ইমেইল সাপোর্ট", value: siteConfig.email },
 ]
 
 function Faq() {
@@ -65,7 +65,7 @@ function Faq() {
       </div>
 
       <motion.div
-        initial={{ opacity: 0, y: 24 }}
+        initial={false}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.5, ease: "easeOut" }}
@@ -99,7 +99,7 @@ function Faq() {
       </div>
 
       <motion.div
-        initial={{ opacity: 0, y: 24 }}
+        initial={false}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.5, ease: "easeOut" }}
@@ -119,7 +119,7 @@ function Faq() {
             />
             <div className="relative size-16 overflow-hidden rounded-full ring-2 ring-primary/20">
               <Image
-                src="/images/logos/help-center.png"
+                src="/images/logos/optimized/help-center.webp"
                 alt="সাপোর্ট এজেন্ট"
                 fill
                 sizes="64px"

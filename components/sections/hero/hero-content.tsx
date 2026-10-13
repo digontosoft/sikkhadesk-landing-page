@@ -5,14 +5,7 @@ import { Star } from "lucide-react"
 
 import { Badge } from "@/components/common/badge"
 import { HeroButtons } from "@/components/sections/hero/hero-buttons"
-import { cn } from "@/lib/utils"
-
-const avatarColors = [
-  "bg-brand-teal",
-  "bg-brand-blue",
-  "bg-brand-emerald",
-  "bg-brand-amber",
-]
+import { siteConfig } from "@/constants/site"
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -27,7 +20,7 @@ const staggerContainer = {
 function HeroContent() {
   return (
     <motion.div
-      initial="hidden"
+      initial={false}
       animate="show"
       variants={staggerContainer}
       className="flex flex-col items-center gap-6 text-center xl:items-start xl:text-left"
@@ -38,7 +31,7 @@ function HeroContent() {
       >
         <Badge>
           <Star className="size-3.5 fill-brand-700 text-brand-700" />
-          স্মার্ট শিক্ষা ব্যবস্থাপনার আধুনিক প্ল্যাটফর্ম
+          বাংলাদেশের শিক্ষা প্রতিষ্ঠানের জন্য
         </Badge>
       </motion.div>
 
@@ -47,8 +40,8 @@ function HeroContent() {
         transition={{ duration: 0.5, ease: "easeOut" }}
         className="font-heading text-3xl font-bold text-balance text-foreground sm:text-4xl md:text-5xl"
       >
-        আপনার শিক্ষা প্রতিষ্ঠান পরিচালনা এখন{" "}
-        <span className="text-gradient-hero">আরও সহজ, স্মার্ট ও নির্ভুল</span>
+        বাংলাদেশের স্কুল ম্যানেজমেন্ট সফটওয়্যার{" "}
+        <span className="text-gradient-hero">SikkhaDesk</span>
       </motion.h1>
 
       <motion.p
@@ -56,7 +49,9 @@ function HeroContent() {
         transition={{ duration: 0.5, ease: "easeOut" }}
         className="mx-auto max-w-xl text-lg text-balance text-muted-foreground xl:mx-0"
       >
-        ভর্তি থেকে ফি, উপস্থিতি থেকে ফলাফল— সবকিছু এক প্ল্যাটফর্মে, এক ক্লিকে।
+        স্কুল, কলেজ, মাদ্রাসা ও কোচিং সেন্টারের শিক্ষার্থী, উপস্থিতি, ফি,
+        পরীক্ষা ও ফলাফল পরিচালনা করুন এক প্ল্যাটফর্মে। SikkhaDesk School
+        Management Software দিয়ে প্রতিদিনের কাজ রাখুন গুছিয়ে।
       </motion.p>
 
       <motion.div
@@ -72,24 +67,9 @@ function HeroContent() {
         transition={{ duration: 0.5, ease: "easeOut" }}
         className="flex items-center justify-center gap-3 xl:justify-start"
       >
-        <div className="flex -space-x-3">
-          {avatarColors.map((color, index) => (
-            <span
-              key={color}
-              className={cn(
-                "flex size-9 items-center justify-center rounded-full border-2 border-background text-xs font-semibold text-white",
-                color
-              )}
-            >
-              {String.fromCharCode(65 + index)}
-            </span>
-          ))}
-          <span className="flex h-9 min-w-9 items-center justify-center rounded-full border-2 border-background bg-primary px-1.5 text-[11px] font-semibold text-primary-foreground">
-            ৫০+
-          </span>
-        </div>
-        <p className="text-sm text-muted-foreground">
-          শিক্ষা প্রতিষ্ঠান আমাদের সাথে
+        <p className="rounded-full border border-primary/20 bg-primary/5 px-4 py-2 text-sm text-foreground">
+          {new Intl.NumberFormat("bn-BD").format(siteConfig.trialDays)} দিনের
+          ফ্রি ট্রায়ালে শুরু করুন
         </p>
       </motion.div>
     </motion.div>

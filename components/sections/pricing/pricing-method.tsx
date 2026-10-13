@@ -6,7 +6,7 @@ import { pricingMethod } from "@/constants/pricing"
 function PricingMethod() {
   return (
     <div className="mt-10 rounded-2xl border border-border bg-card p-8">
-      <h3 className="text-brand-emerald mb-6 text-center text-lg font-bold">
+      <h3 className="mb-6 text-center text-lg font-bold text-brand-emerald">
         আমাদের মূল্য নির্ধারণ পদ্ধতি
       </h3>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -15,11 +15,11 @@ function PricingMethod() {
 
           return (
             <div key={item.range} className="flex items-start gap-3">
-              <Icon className="text-primary mt-0.5 size-5 shrink-0" />
+              <Icon className="mt-0.5 size-5 shrink-0 text-primary" />
               <div>
                 <p className="font-semibold text-foreground">{item.range}</p>
                 {item.contactOnly ? (
-                  <p className="text-brand-emerald text-sm font-medium">
+                  <p className="text-sm font-medium text-brand-emerald">
                     আলোচনা সাপেক্ষে
                   </p>
                 ) : (
@@ -27,7 +27,7 @@ function PricingMethod() {
                     {item.prices?.map(({ plan, price }) => (
                       <li
                         key={plan}
-                        className="text-brand-emerald inline-flex items-center gap-1 text-sm font-medium"
+                        className="inline-flex items-center gap-1 text-sm font-medium text-brand-emerald"
                       >
                         <span>{plan}:</span>
                         <span className="inline-flex items-center gap-0.5">

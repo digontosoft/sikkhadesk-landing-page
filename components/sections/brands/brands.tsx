@@ -15,7 +15,7 @@ function Brands() {
     <section className="border-y border-border/60 bg-muted/20 py-10 sm:py-12">
       <Container>
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.5, ease: "easeOut" }}
@@ -29,7 +29,7 @@ function Brands() {
       </Container>
 
       <div className="group relative mt-10 overflow-hidden mask-[linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-        <div className="flex w-max animate-marquee items-center gap-8 group-hover:paused sm:gap-10 lg:gap-14">
+        <div className="animate-marquee flex w-max items-center gap-8 group-hover:paused sm:gap-10 lg:gap-14">
           {items.map((logo, index) => (
             <div
               key={`${logo.file}-${index}`}
@@ -37,7 +37,7 @@ function Brands() {
             >
               <div className="relative h-full w-full p-3">
                 <Image
-                  src={`/images/logos/${logo.file}`}
+                  src={`/images/logos/optimized/${logo.file.replace(/\.[^.]+$/, ".webp")}`}
                   alt={logo.name}
                   fill
                   sizes="96px"

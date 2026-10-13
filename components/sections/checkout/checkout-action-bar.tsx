@@ -26,7 +26,7 @@ function CheckoutActionBar({
           <p className="text-xs text-muted-foreground sm:text-sm">
             মোট পরিশোধযোগ্য:
           </p>
-          <p className="text-primary inline-flex items-center gap-1 text-xl font-bold sm:text-2xl">
+          <p className="inline-flex items-center gap-1 text-xl font-bold text-primary sm:text-2xl">
             <FaBangladeshiTakaSign className="size-4 sm:size-5" />
             {formatBn(total)}
           </p>
@@ -34,12 +34,12 @@ function CheckoutActionBar({
 
         <div className="hidden items-center gap-5 text-sm text-muted-foreground lg:flex">
           <span className="inline-flex items-center gap-1.5">
-            <ShieldCheck className="text-brand-emerald size-4 shrink-0" />
+            <ShieldCheck className="size-4 shrink-0 text-brand-emerald" />
             ১৪ দিনের মানি ব্যাক গ্যারান্টি
           </span>
           <span className="inline-flex items-center gap-1.5">
-            <Headset className="text-brand-blue size-4 shrink-0" />
-            ২৪/৭ কাস্টমার সাপোর্ট
+            <Headset className="size-4 shrink-0 text-brand-blue" />
+            রবি–বৃহঃ, সকাল ৯টা–সন্ধ্যা ৭টা সাপোর্ট
           </span>
         </div>
 

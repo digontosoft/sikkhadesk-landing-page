@@ -26,7 +26,7 @@ function OrganizationSummary({ data }: OrganizationSummaryProps) {
             className="flex flex-col gap-0.5 sm:flex-row sm:items-start sm:justify-between sm:gap-3"
           >
             <dt className="shrink-0 text-muted-foreground">{row.label}</dt>
-            <dd className="min-w-0 break-words font-medium text-foreground sm:text-right">
+            <dd className="min-w-0 font-medium break-words text-foreground sm:text-right">
               {row.value || "—"}
             </dd>
           </div>

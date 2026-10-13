@@ -38,9 +38,12 @@ function BillingToggle({ value, onChange }: BillingToggleProps) {
         ref={monthlyRef}
         type="button"
         onClick={() => onChange("monthly")}
+        aria-pressed={value === "monthly"}
         className={cn(
           "relative z-10 flex cursor-pointer flex-col items-center rounded-xl px-6 py-2 text-sm transition-colors",
-          value === "monthly" ? "text-white" : "text-muted-foreground hover:text-foreground"
+          value === "monthly"
+            ? "bg-gradient-primary text-white"
+            : "text-muted-foreground hover:text-foreground"
         )}
       >
         <span className="font-semibold">Monthly</span>
@@ -51,14 +54,17 @@ function BillingToggle({ value, onChange }: BillingToggleProps) {
         ref={yearlyRef}
         type="button"
         onClick={() => onChange("yearly")}
+        aria-pressed={value === "yearly"}
         className={cn(
           "relative z-10 flex cursor-pointer flex-col items-center rounded-xl px-6 py-2 text-sm transition-colors",
-          value === "yearly" ? "text-white" : "text-muted-foreground hover:text-foreground"
+          value === "yearly"
+            ? "bg-gradient-primary text-white"
+            : "text-muted-foreground hover:text-foreground"
         )}
       >
         <span className="flex items-center gap-2 font-semibold">
           Yearly
-          <span className="bg-brand-emerald/15 text-brand-emerald rounded-full px-2 py-0.5 text-[11px] font-bold">
+          <span className="rounded-full bg-brand-emerald/15 px-2 py-0.5 text-[11px] font-bold text-brand-emerald">
             ১০% ছাড়
           </span>
         </span>

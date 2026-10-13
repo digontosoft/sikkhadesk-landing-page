@@ -23,23 +23,41 @@ interface FeatureCardProps {
   index: number
 }
 
-function FeatureCard({ icon, title, description, color, index }: FeatureCardProps) {
+function FeatureCard({
+  icon,
+  title,
+  description,
+  color,
+  index,
+}: FeatureCardProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 24 }}
+      initial={false}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.45, delay: (index % 4) * 0.08, ease: "easeOut" }}
+      transition={{
+        duration: 0.45,
+        delay: (index % 4) * 0.08,
+        ease: "easeOut",
+      }}
       whileHover={{ y: -6 }}
       className="flex flex-col gap-4 rounded-2xl border border-border bg-card p-6 shadow-sm transition-shadow hover:shadow-lg"
     >
       <div className="flex items-center justify-between">
         <span
-          className={cn("flex size-12 items-center justify-center rounded-xl", colorStyles[color])}
+          className={cn(
+            "flex size-12 items-center justify-center rounded-xl",
+            colorStyles[color]
+          )}
         >
           {icon}
         </span>
-        <span className={cn("rounded-full px-2.5 py-1 text-xs font-bold", colorStyles[color])}>
+        <span
+          className={cn(
+            "rounded-full px-2.5 py-1 text-xs font-bold",
+            colorStyles[color]
+          )}
+        >
           {String(index + 1).padStart(2, "0")}
         </span>
       </div>

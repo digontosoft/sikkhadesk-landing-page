@@ -37,18 +37,8 @@ export const paymentAccounts = {
   bkash: {
     label: "bKash",
     accountType: "পার্সোনাল",
-    number: "01712-345678",
+    number: "01631547158",
     instruction:
       "উপরের নম্বরে Send Money করে ট্রানজ্যাকশন আইডিটি নিচের ফর্মে দিন।",
-  },
-  bank: {
-    label: "ব্যাংক অ্যাকাউন্ট",
-    bankName: "BRAC Bank Limited",
-    accountName: "SikkhaDesk Limited",
-    accountNumber: "2050 1234 5678 90",
-    branch: "Banani, Dhaka",
-    routingNumber: "060261234",
-    instruction:
-      "ব্যাংক ট্রান্সফার সম্পন্ন করে রেফারেন্স নম্বর ও প্রমাণ আপলোড করুন।",
   },
 } as const

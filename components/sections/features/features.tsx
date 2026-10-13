@@ -10,7 +10,7 @@ import { CtaButton } from "@/components/common/cta-button"
 import { FeatureCard } from "@/components/sections/features/feature-card"
 import { features } from "@/constants/features"
 
-function Features() {
+function Features({ page = false }: { page?: boolean }) {
   return (
     <Section id="features" className="relative overflow-hidden">
       <div
@@ -18,7 +18,7 @@ function Features() {
         className="pointer-events-none absolute top-6 right-4 -z-10 hidden grid-cols-6 gap-1.5 opacity-40 sm:right-10 sm:grid"
       >
         {Array.from({ length: 18 }).map((_, index) => (
-          <span key={index} className="bg-brand-400 size-1.5 rounded-full" />
+          <span key={index} className="size-1.5 rounded-full bg-brand-400" />
         ))}
       </div>
       <div
@@ -26,27 +26,32 @@ function Features() {
         className="pointer-events-none absolute bottom-6 left-4 -z-10 hidden grid-cols-6 gap-1.5 opacity-40 sm:left-10 sm:grid"
       >
         {Array.from({ length: 18 }).map((_, index) => (
-          <span key={index} className="bg-brand-400 size-1.5 rounded-full" />
+          <span key={index} className="size-1.5 rounded-full bg-brand-400" />
         ))}
       </div>
 
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={false}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.5, ease: "easeOut" }}
         className="flex flex-col items-center gap-4 text-center"
       >
         <Badge>
-          <Star className="fill-brand-700 text-brand-700 size-3.5" />
+          <Star className="size-3.5 fill-brand-700 text-brand-700" />
           ফিচারসমূহ
         </Badge>
-        <Heading size="lg" className="max-w-2xl text-balance">
-          সব প্রয়োজন, <span className="text-gradient-hero">এক প্ল্যাটফর্মে</span>
+        <Heading
+          as={page ? "h1" : "h2"}
+          size="lg"
+          className="max-w-2xl text-balance"
+        >
+          {page ? "স্কুল ম্যানেজমেন্ট সফটওয়্যারের ফিচার" : "সব প্রয়োজন,"}{" "}
+          <span className="text-gradient-hero">এক প্ল্যাটফর্মে</span>
         </Heading>
         <p className="max-w-2xl text-balance text-muted-foreground sm:text-lg">
-          শিক্ষা প্রতিষ্ঠানের প্রতিদিনের কাজগুলোকে সহজ, দ্রুত ও ডিজিটাল করতে আমাদের রয়েছে
-          অত্যাধুনিক ও সমন্বিত সব ফিচার।
+          শিক্ষা প্রতিষ্ঠানের প্রতিদিনের কাজগুলোকে সহজ, দ্রুত ও ডিজিটাল করতে
+          আমাদের রয়েছে অত্যাধুনিক ও সমন্বিত সব ফিচার।
         </p>
       </motion.div>
 
@@ -73,14 +78,21 @@ function Features() {
             <Star className="size-5" />
           </span>
           <div>
-            <p className="font-semibold text-foreground">এছাড়াও রয়েছে আরও অনেক ছোট-বড় ফিচার!</p>
+            <p className="font-semibold text-foreground">
+              এছাড়াও রয়েছে আরও অনেক ছোট-বড় ফিচার!
+            </p>
             <p className="text-sm text-muted-foreground">
-              আপনার প্রতিষ্ঠানকে স্মার্ট ও ডিজিটাল করতে SikkhaDesk আছে আপনার পাশে।
+              আপনার প্রতিষ্ঠানকে স্মার্ট ও ডিজিটাল করতে SikkhaDesk আছে আপনার
+              পাশে।
             </p>
           </div>
         </div>
-        <CtaButton href="/pricing" size="lg" className="shrink-0">
-          সব ফিচার দেখুন
+        <CtaButton
+          href={page ? "/contact" : "/features"}
+          size="lg"
+          className="shrink-0"
+        >
+          {page ? "ফিচারের ডেমো নিন" : "সব ফিচার দেখুন"}
           <ArrowRight className="size-5" data-icon="inline-end" />
         </CtaButton>
       </div>

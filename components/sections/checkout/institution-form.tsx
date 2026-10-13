@@ -6,7 +6,12 @@ import { Controller, useForm } from "react-hook-form"
 
 import { LocationSelects } from "@/components/sections/checkout/location-selects"
 import { LogoUpload } from "@/components/sections/checkout/logo-upload"
-import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field"
+import {
+  Field,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+} from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import {
   institutionSchema,
@@ -58,7 +63,7 @@ function InstitutionForm({
       })}
     >
       <div className="mb-6 flex items-start gap-3">
-        <span className="bg-primary/10 text-primary flex size-10 shrink-0 items-center justify-center rounded-xl">
+        <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
           <Building2 className="size-5" />
         </span>
         <div className="min-w-0">
@@ -271,10 +276,11 @@ function InstitutionForm({
           )}
         />
 
-        <div className="bg-primary/5 text-primary flex items-start gap-2 rounded-xl px-4 py-3 text-sm">
+        <div className="flex items-start gap-2 rounded-xl bg-primary/5 px-4 py-3 text-sm text-primary">
           <Info className="mt-0.5 size-4 shrink-0" />
           <p>
-            নোট: সঠিক তথ্য প্রদান করুন যাতে আমরা আপনাকে সর্বোত্তম সেবা দিতে পারি।
+            নোট: সঠিক তথ্য প্রদান করুন যাতে আমরা আপনাকে সর্বোত্তম সেবা দিতে
+            পারি।
           </p>
         </div>
       </FieldGroup>

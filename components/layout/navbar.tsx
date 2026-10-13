@@ -20,7 +20,7 @@ function Navbar() {
       <Container className="flex h-24 items-center justify-between">
         <Logo />
 
-        <nav className="hidden items-center gap-8 lg:flex">
+        <nav className="hidden items-center gap-6 xl:flex">
           {mainNav.map((item) => {
             const isActive = !item.external && pathname === item.href
             const linkClassName = cn(
@@ -51,7 +51,7 @@ function Navbar() {
           })}
         </nav>
 
-        <div className="hidden items-center gap-4 lg:flex">
+        <div className="hidden items-center gap-4 xl:flex">
           <ThemeToggle />
           <CtaButton href="/contact" size="lg" className="rounded-xl">
             ফ্রি ডেমো নিন
@@ -59,7 +59,7 @@ function Navbar() {
           </CtaButton>
         </div>
 
-        <div className="flex items-center gap-1 lg:hidden">
+        <div className="flex items-center gap-1 xl:hidden">
           <ThemeToggle />
           <MobileMenu />
         </div>
